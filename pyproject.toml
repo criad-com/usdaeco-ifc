@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "usdaeco-ifc"
+version = "0.2.2"
+description = "IFC conversion and native sync host"
+requires-python = ">=3.11"
+dependencies = ["usdaeco-sync>=0.5,<0.6", "ifcopenshell==0.8.5", "numpy>=1.26"]
+
+[project.optional-dependencies]
+ids = ["ifctester==0.8.5"]
+
+[project.scripts]
+aeco-ifc = "usdaeco_ifc.cli:main"
+aeco-ifc-exact = "usdaeco_ifc.exact:main"
+
+[project.entry-points."aeco_sync.hosts"]
+ifc = "usdaeco_ifc.host:IfcHost"
+
+[tool.setuptools.packages.find]
+where = ["tools"]
+include = ["usdaeco_ifc*"]
+
+[tool.setuptools.package-data]
+usdaeco_ifc = ["native/*.cpp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tools", "tests"]

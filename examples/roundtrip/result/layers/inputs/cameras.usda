@@ -1,0 +1,10 @@
+#usda 1.0
+
+def "Renders"
+{
+    def Camera "edited_corner"
+    {
+        float focalLength = 48
+        # The runner derives placement and clipping from the edited body bounds.
+    }
+}

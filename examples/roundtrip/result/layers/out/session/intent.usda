@@ -1,0 +1,28 @@
+#usda 1.0
+(
+    customLayerData = {
+    }
+)
+
+over "demo_datacentre_01"
+{
+    over "demo_datacentre_01_Site"
+    {
+        over "demo_datacentre_01"
+        {
+            over "L00_Ground"
+            {
+                over "wall_l0_h_014"
+                {
+                    double aeco:wall:height = 7.15
+                }
+
+                over "rt_clg_fwp_1_s_Riser"
+                {
+                    double3 aeco:axis:end = (0, 0, 3.8499999999999996)
+                }
+            }
+        }
+    }
+}
+

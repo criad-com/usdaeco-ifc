@@ -1,0 +1,55 @@
+# Changelog
+
+## 0.2.2
+
+- public names → github.com/criad-com.
+- Pin toolchain v0.3.8; preserve all other dependency pins.
+- Update the example manifest toolchain pin without republishing results.
+- Verify 101 checks, 0 failed, 0 not run; 134 tests passed; unmodified
+  toolchain v0.3.8 structure lint: 29 checks, 0 failed.
+
+## 0.2.1
+
+- Re-pin to train aeco-0.7.0; preserve requirement ranges and historical fixtures.
+- Refresh roundtrip source provenance for datacentre v0.4.5; all USD files,
+  renders and findings remain unchanged (13,404 prims; 2,954 elements; 33 spaces).
+- Verify 100 checks, 0 failed, 0 not run; 134 tests passed; unmodified
+  toolchain v0.3.5 structure lint: 28 checks, 0 failed.
+
+## 0.2.0
+
+- Add the optional exact export command and ABI-isolated OCCT adapter.
+- Export all 2,980 clash-variant products across 32 classes as valid exact bodies,
+  with proxy twins, material subsets and mapped representation prototypes.
+- Keep the 94 integration checks and add six exact acceptance rows; 134 tests pass.
+- Pin core v0.9.2, axis v0.1.1, toolchain v0.3.2 and datacentre v0.4.2.
+- Refresh the final-reimport publication and document native runtime and lint limits.
+
+## 0.1.2
+
+- Publish the final reimported roundtrip as a standalone flattened crate,
+  diffable review layers and a stock USD render, with S27/S28 checks.
+- Preserve original intent and native results separately from final reimport
+  opinions; omit live session bindings and transaction metadata from review.
+- Require all eight core validators to import and load through UsdValidation.
+- Pin toolchain v0.3.1 and sync v0.5.1; record the v0.3.2 licence-lint override.
+- Adopt MIT and document runtime dependency licences.
+
+## 0.1.1
+
+- Re-pin conversion and native integration to core v0.9.1 and axis v0.1.0.
+- Preserve the converter stamp and load only its core and axis schemas.
+- Compare the base conversion with datacentre v0.4.1 published layers, using
+  the publisher's binary semantic-layer format, and run the core validators.
+- Preserve the native cases, roundtrip edits and rendered example.
+
+## 0.1.0
+
+- Move the core v0.8.4 IFC converter without changing its emitted layers or stamp.
+- Move the IFC native host and operation helpers, register the `ifc` entry point,
+  and preserve the existing synthetic and data-centre cases.
+- Support bounded edits on direct exported sweeps used by the demo facility.
+- Add an IFC roundtrip, USD/native convergence report and integration gate.
+- Render the edited bodies with toolchain v0.2.1, a camera fitted to their bounds,
+  and a normalized foreground check requiring at least 2% image coverage.
+- Document the future OCCT exact pass without installing an unimplemented command.

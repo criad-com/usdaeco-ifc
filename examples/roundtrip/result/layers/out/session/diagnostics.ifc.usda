@@ -1,0 +1,19 @@
+#usda 1.0
+(
+    customLayerData = {
+    }
+    fallbackPrimTypes = {
+        token[] AecoSyncDiagnostic = ["Scope"]
+    }
+)
+
+def Scope "Sync"
+{
+    def Scope "Diagnostics"
+    {
+        def Scope "ifc"
+        {
+        }
+    }
+}
+

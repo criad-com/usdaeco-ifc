@@ -1,0 +1,88 @@
+[
+  {
+    "bodies": [
+      {
+        "divergent": false,
+        "extentError": 0.0,
+        "id": "7cac4c99-c7d3-584f-a822-6410a492f040",
+        "ifc": {
+          "max": [
+            30.0,
+            0.1,
+            7.15
+          ],
+          "min": [
+            26.0,
+            -0.1,
+            0.0
+          ],
+          "volume": 5.72
+        },
+        "native": {
+          "max": [
+            30.0,
+            0.1,
+            7.15
+          ],
+          "min": [
+            26.0,
+            -0.1,
+            0.0
+          ],
+          "volume": 5.72
+        },
+        "volumeError": 0.0,
+        "volumeRelativeError": 0.0
+      },
+      {
+        "divergent": false,
+        "extentError": 0.0,
+        "id": "dfd04dfb-5bf0-511e-8a96-ccf71a4e8a00",
+        "ifc": {
+          "max": [
+            26.149635443704906,
+            3.05,
+            4.75
+          ],
+          "min": [
+            26.050364556295097,
+            2.95,
+            0.9
+          ],
+          "volume": 0.02994437249398091
+        },
+        "native": {
+          "max": [
+            26.149635443704906,
+            3.05,
+            4.75
+          ],
+          "min": [
+            26.050364556295097,
+            2.95,
+            0.9
+          ],
+          "volume": 0.02994437249398091
+        },
+        "volumeError": 0.0,
+        "volumeRelativeError": 0.0
+      }
+    ],
+    "cameras": [],
+    "cctvConverged": false,
+    "diagnostics": [],
+    "driverDifferences": [],
+    "driverTolerance": 0.0001,
+    "driversCompared": 14,
+    "driversConverged": true,
+    "elements": 2,
+    "extentTolerance": 0.0001,
+    "maxDriverError": 0.0,
+    "maxExtentError": 0.0,
+    "maxVolumeRelativeError": 0.0,
+    "missingDrivers": [],
+    "missingElements": [],
+    "volumeAbsoluteTolerance": 1e-06,
+    "volumeRelativeTolerance": 0.01
+  }
+]

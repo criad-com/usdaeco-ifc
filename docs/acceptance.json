@@ -1,0 +1,799 @@
+{
+  "checks": 100,
+  "converter": {
+    "conversion": {
+      "blankHeadingsOmitted": 0,
+      "elements": 2954,
+      "extents": 33,
+      "meshes": 2987,
+      "phases": 2954,
+      "portLinks": 3024,
+      "ports": 6212,
+      "spatial": 37,
+      "systems": 9,
+      "types": 64,
+      "unclassified": 2,
+      "unparented": 0,
+      "zones": 0
+    },
+    "layers": [
+      {
+        "bytes": 332637,
+        "contentIdentical": true,
+        "contentSha256": "1a7d28b936835bb446cc47ab7e90a639727e652ceada4ef3fd141ff3b4f8849c",
+        "differences": [],
+        "identical": true,
+        "name": "dc.geometry.usdc",
+        "referenceBytes": 332637,
+        "referenceContentSha256": "1a7d28b936835bb446cc47ab7e90a639727e652ceada4ef3fd141ff3b4f8849c",
+        "referenceSha256": "d73387613389fda72868152abc29f0ccfcae3f092f274e99bc3fb7b88998ec5c",
+        "sha256": "d73387613389fda72868152abc29f0ccfcae3f092f274e99bc3fb7b88998ec5c"
+      },
+      {
+        "bytes": 1496506,
+        "contentIdentical": true,
+        "contentSha256": "b5876992dd83d7dfd900d75ab2f9d9608df37cb0577cc5f3ed74365d533b99c1",
+        "differences": [],
+        "identical": false,
+        "name": "dc.semantics.usdc",
+        "referenceBytes": 1471556,
+        "referenceContentSha256": "b5876992dd83d7dfd900d75ab2f9d9608df37cb0577cc5f3ed74365d533b99c1",
+        "referenceSha256": "1d9e6753da91b62fa95f553102f435c56a5ff93d63c2cec4f01d512dd8f1d3cd",
+        "sha256": "b0928a2c64c5c51078d1e9733271f044597bfaf606f513d86e3c552c9c47e7e0"
+      },
+      {
+        "bytes": 517,
+        "contentIdentical": true,
+        "contentSha256": "628b1383ecb57956fd3c39967c68914afa97c3a3d24c7359c05c44b9cdb7abf9",
+        "differences": [],
+        "identical": true,
+        "name": "dc.usda",
+        "referenceBytes": 517,
+        "referenceContentSha256": "628b1383ecb57956fd3c39967c68914afa97c3a3d24c7359c05c44b9cdb7abf9",
+        "referenceSha256": "628b1383ecb57956fd3c39967c68914afa97c3a3d24c7359c05c44b9cdb7abf9",
+        "sha256": "628b1383ecb57956fd3c39967c68914afa97c3a3d24c7359c05c44b9cdb7abf9"
+      }
+    ],
+    "manifestSpaces": 33,
+    "moved": {
+      "elements": 2954,
+      "levels": 2,
+      "meshes": 2987,
+      "ports": 6212,
+      "spaces": 33,
+      "unclassified": 2,
+      "unparented": 0
+    },
+    "normalization": "Text semantics exported to usdc; root sublayer extension follows the publisher.",
+    "publishedCompatibility": {
+      "compositionErrors": 0,
+      "elements": 2954,
+      "errors": 0,
+      "spaces": 33,
+      "validators": 8,
+      "warnings": 2
+    },
+    "reference": {
+      "elements": 2954,
+      "levels": 2,
+      "meshes": 2987,
+      "ports": 6212,
+      "spaces": 33,
+      "unclassified": 2,
+      "unparented": 0
+    },
+    "rooms": 30,
+    "spaces": 33
+  },
+  "exact": {
+    "exact": 2980,
+    "failed": 0,
+    "failures": [],
+    "mappedProducts": 45,
+    "materialSubsets": 3334,
+    "perClass": {
+      "IfcAirTerminal": {
+        "exact": 4,
+        "failed": 0,
+        "meshable": 4
+      },
+      "IfcAlarm": {
+        "exact": 12,
+        "failed": 0,
+        "meshable": 12
+      },
+      "IfcAudioVisualAppliance": {
+        "exact": 45,
+        "failed": 0,
+        "meshable": 45
+      },
+      "IfcBeam": {
+        "exact": 4,
+        "failed": 0,
+        "meshable": 4
+      },
+      "IfcBuildingElementProxy": {
+        "exact": 2,
+        "failed": 0,
+        "meshable": 2
+      },
+      "IfcCableCarrierFitting": {
+        "exact": 165,
+        "failed": 0,
+        "meshable": 165
+      },
+      "IfcCableCarrierSegment": {
+        "exact": 339,
+        "failed": 0,
+        "meshable": 339
+      },
+      "IfcCableFitting": {
+        "exact": 401,
+        "failed": 0,
+        "meshable": 401
+      },
+      "IfcCableSegment": {
+        "exact": 797,
+        "failed": 0,
+        "meshable": 797
+      },
+      "IfcChiller": {
+        "exact": 2,
+        "failed": 0,
+        "meshable": 2
+      },
+      "IfcColumn": {
+        "exact": 80,
+        "failed": 0,
+        "meshable": 80
+      },
+      "IfcCoolingTower": {
+        "exact": 4,
+        "failed": 0,
+        "meshable": 4
+      },
+      "IfcCovering": {
+        "exact": 2,
+        "failed": 0,
+        "meshable": 2
+      },
+      "IfcDoor": {
+        "exact": 41,
+        "failed": 0,
+        "meshable": 41
+      },
+      "IfcElectricDistributionBoard": {
+        "exact": 26,
+        "failed": 0,
+        "meshable": 26
+      },
+      "IfcElectricFlowStorageDevice": {
+        "exact": 16,
+        "failed": 0,
+        "meshable": 16
+      },
+      "IfcElectricGenerator": {
+        "exact": 2,
+        "failed": 0,
+        "meshable": 2
+      },
+      "IfcElementAssembly": {
+        "exact": 2,
+        "failed": 0,
+        "meshable": 2
+      },
+      "IfcFurniture": {
+        "exact": 170,
+        "failed": 0,
+        "meshable": 170
+      },
+      "IfcHeatExchanger": {
+        "exact": 1,
+        "failed": 0,
+        "meshable": 1
+      },
+      "IfcLightFixture": {
+        "exact": 6,
+        "failed": 0,
+        "meshable": 6
+      },
+      "IfcPipeFitting": {
+        "exact": 238,
+        "failed": 0,
+        "meshable": 238
+      },
+      "IfcPipeSegment": {
+        "exact": 482,
+        "failed": 0,
+        "meshable": 482
+      },
+      "IfcPump": {
+        "exact": 6,
+        "failed": 0,
+        "meshable": 6
+      },
+      "IfcSanitaryTerminal": {
+        "exact": 2,
+        "failed": 0,
+        "meshable": 2
+      },
+      "IfcSensor": {
+        "exact": 11,
+        "failed": 0,
+        "meshable": 11
+      },
+      "IfcSlab": {
+        "exact": 9,
+        "failed": 0,
+        "meshable": 9
+      },
+      "IfcStair": {
+        "exact": 1,
+        "failed": 0,
+        "meshable": 1
+      },
+      "IfcTank": {
+        "exact": 3,
+        "failed": 0,
+        "meshable": 3
+      },
+      "IfcTransformer": {
+        "exact": 2,
+        "failed": 0,
+        "meshable": 2
+      },
+      "IfcUnitaryEquipment": {
+        "exact": 13,
+        "failed": 0,
+        "meshable": 13
+      },
+      "IfcWall": {
+        "exact": 92,
+        "failed": 0,
+        "meshable": 92
+      }
+    },
+    "prototypes": 3,
+    "selected": 2980
+  },
+  "failed": 0,
+  "hostCases": {
+    "camera": [
+      {
+        "id": "C-move",
+        "passed": true
+      },
+      {
+        "id": "C-pan-tilt",
+        "passed": true
+      },
+      {
+        "id": "C-zoom-clamped",
+        "passed": true
+      },
+      {
+        "id": "C-preset",
+        "passed": true
+      },
+      {
+        "id": "C-type-swap",
+        "passed": true
+      },
+      {
+        "id": "C-create",
+        "passed": true
+      },
+      {
+        "id": "C-delete",
+        "passed": true
+      },
+      {
+        "id": "C-derived-authored",
+        "passed": true
+      },
+      {
+        "id": "X-converge-cctv",
+        "passed": true
+      }
+    ],
+    "datacentre": [
+      {
+        "id": "D-create",
+        "passed": true
+      },
+      {
+        "id": "D-move",
+        "passed": true
+      },
+      {
+        "id": "D-pan-tilt",
+        "passed": true
+      },
+      {
+        "id": "D-focal-refused",
+        "passed": true
+      },
+      {
+        "id": "D-preset",
+        "passed": true
+      },
+      {
+        "id": "D-type-swap",
+        "passed": true
+      },
+      {
+        "id": "D-delete",
+        "passed": true
+      },
+      {
+        "id": "D-repeat-apply",
+        "passed": true
+      },
+      {
+        "id": "D-converge",
+        "passed": true
+      }
+    ],
+    "synthetic": [
+      {
+        "id": "P-free",
+        "passed": true
+      },
+      {
+        "id": "P-conn-keep",
+        "passed": true
+      },
+      {
+        "id": "P-conn-refuse",
+        "passed": true
+      },
+      {
+        "id": "P-conn-disc",
+        "passed": true
+      },
+      {
+        "id": "P-size-ok",
+        "passed": true
+      },
+      {
+        "id": "P-size-bad",
+        "passed": true
+      },
+      {
+        "id": "P-derived",
+        "passed": true
+      },
+      {
+        "id": "W-joined",
+        "passed": true
+      },
+      {
+        "id": "W-neighbour",
+        "passed": true
+      },
+      {
+        "id": "S-stale",
+        "passed": true
+      },
+      {
+        "id": "P-join-angle",
+        "passed": true
+      },
+      {
+        "id": "P-join-line",
+        "passed": true
+      },
+      {
+        "id": "P-disconnect",
+        "passed": true
+      },
+      {
+        "id": "P-move",
+        "passed": true
+      },
+      {
+        "id": "W-unjoined",
+        "passed": true
+      },
+      {
+        "id": "W-joined-unjoin",
+        "passed": true
+      },
+      {
+        "id": "W-type",
+        "passed": true
+      },
+      {
+        "id": "W-flip",
+        "passed": true
+      },
+      {
+        "id": "W-height-offset",
+        "passed": true
+      },
+      {
+        "id": "W-build-up",
+        "passed": true
+      },
+      {
+        "id": "W-join-add",
+        "passed": true
+      }
+    ]
+  },
+  "manifestCounts": {
+    "activities_per_programme": {},
+    "cameras": 45,
+    "ceilings": 0,
+    "columns": 80,
+    "doors": 41,
+    "fitout_by_class": {},
+    "fix_counts": {},
+    "mep_by_class": {
+      "IfcAlarm": 12,
+      "IfcAudioVisualAppliance": 45,
+      "IfcCableCarrierFitting": 165,
+      "IfcCableCarrierSegment": 336,
+      "IfcCableFitting": 401,
+      "IfcCableSegment": 797,
+      "IfcChiller": 2,
+      "IfcCoolingTower": 4,
+      "IfcElectricDistributionBoard": 26,
+      "IfcElectricFlowStorageDevice": 16,
+      "IfcElectricGenerator": 2,
+      "IfcHeatExchanger": 1,
+      "IfcPipeFitting": 238,
+      "IfcPipeSegment": 476,
+      "IfcPump": 6,
+      "IfcSensor": 11,
+      "IfcTank": 3,
+      "IfcTransformer": 2,
+      "IfcUnitaryEquipment": 12
+    },
+    "pods": 0,
+    "readers": 11,
+    "rooms": 30,
+    "spaces": 33,
+    "storeys": 2,
+    "temporary": 0,
+    "voids": 0,
+    "walls": 92
+  },
+  "notRun": 0,
+  "observations": {
+    "nix": {
+      "attempts": 1,
+      "cause": "The offline flake check with local direct-input overrides could not resolve the nested aeco-toolchain revision (HTTP 404).",
+      "status": "not-proven"
+    },
+    "packaging": {
+      "entryPoint": "pyproject source metadata",
+      "wheel": "not-proven"
+    },
+    "python": {
+      "ifcopenshell": "0.8.5",
+      "usd-core": "26.8"
+    },
+    "render": {
+      "renderer": "Embree",
+      "source": "Matching native OpenUSD executable; family gate interpreter remains usd-core 26.8.",
+      "usd": "0.26.11"
+    },
+    "usdAeco": {
+      "revision": "11000b2ca7a2f560bfcd1ffd439bf9b71a5f5c18",
+      "source": "Exact tagged source; local release archive used when shared checkout advanced.",
+      "version": "0.9.2"
+    },
+    "usdAecoAxis": {
+      "revision": "a559e6a200703f852efb1d15ffa69a6453b863c0",
+      "source": "Exact tagged source; local release archive used when shared checkout advanced.",
+      "version": "0.1.1"
+    },
+    "usdAecoBuildUp": {
+      "revision": "0852913e366f765096505260184c15cb4bbffceb",
+      "source": "Exact release archive.",
+      "version": "0.2.0"
+    },
+    "usdAecoCctv": {
+      "revision": "d38045082b04028152dfd0aec0869fd5c4037451",
+      "source": "Exact release archive.",
+      "version": "0.5.0"
+    },
+    "usdAecoPipe": {
+      "revision": "f48a764dacc99c4467b426f3c1bb691c5c783952",
+      "source": "Exact release archive.",
+      "version": "0.1.2"
+    },
+    "usdAecoSync": {
+      "revision": "ee38f402a08b2c5f784bcc4cd5f826233216d091",
+      "source": "Exact release archive.",
+      "version": "0.5.1"
+    },
+    "usdAecoWall": {
+      "revision": "09b2993e11d07b96a2492e75c49448153524c8b2",
+      "source": "Exact release archive.",
+      "version": "0.1.2"
+    },
+    "usdaeco-datacentre": {
+      "revision": "77d71f3f7372471fc56facc364e562302f1c4d60",
+      "source": "Exact tagged source; local release archive used when shared checkout advanced.",
+      "version": "0.4.2"
+    },
+    "usdaeco-scenarios": {
+      "revision": "c7c6870f36e50b67d08ca68c75f949a5b9921d03",
+      "source": "Exact release archive.",
+      "version": "0.3.7"
+    },
+    "usdaeco-toolchain": {
+      "revision": "362c3a392b37a5d27d876b2e55a3d00d0af798b5",
+      "source": "Exact tagged source; local release archive used when shared checkout advanced.",
+      "version": "0.3.2"
+    }
+  },
+  "pins": {
+    "axis": {
+      "library": "usdAecoAxis",
+      "ref": "v0.1.1",
+      "repo": "usdaeco-axis"
+    },
+    "buildup": {
+      "library": "usdAecoBuildUp",
+      "ref": "v0.2.0",
+      "repo": "usdaeco-buildup"
+    },
+    "cctv": {
+      "library": "usdAecoCctv",
+      "ref": "v0.5.0",
+      "repo": "usdaeco-cctv"
+    },
+    "core": {
+      "library": "usdAeco",
+      "ref": "v0.9.2",
+      "repo": "usdaeco-core"
+    },
+    "datacentre": {
+      "library": "usdaeco-datacentre",
+      "ref": "v0.4.2",
+      "repo": "usdaeco-datacentre"
+    },
+    "pipe": {
+      "library": "usdAecoPipe",
+      "ref": "v0.1.2",
+      "repo": "usdaeco-pipe"
+    },
+    "scenarios": {
+      "library": "usdaeco-scenarios",
+      "ref": "v0.3.7",
+      "repo": "usdaeco-scenarios"
+    },
+    "sync": {
+      "library": "usdAecoSync",
+      "ref": "v0.5.1",
+      "repo": "usdaeco-sync"
+    },
+    "toolchain": {
+      "library": "usdaeco-toolchain",
+      "ref": "v0.3.2",
+      "repo": "usdaeco-toolchain"
+    },
+    "usdSolid": {
+      "library": "usdSolid",
+      "ref": "v0.1.0",
+      "repo": "usdSolid"
+    },
+    "usdSolidOcct": {
+      "library": "usdSolidOcct",
+      "ref": "v0.1.0",
+      "repo": "usdSolidOcct"
+    },
+    "wall": {
+      "library": "usdAecoWall",
+      "ref": "v0.1.2",
+      "repo": "usdaeco-wall"
+    }
+  },
+  "publication": {
+    "bytes": 6445643,
+    "files": [
+      {
+        "bytes": 837,
+        "path": "result/README.md",
+        "sha256": "820c173b7df4d918fdbb2e0cd5347ef152d6c49c8586d11fe9b612d1c4b94093"
+      },
+      {
+        "bytes": 1738843,
+        "normalized_sha256": "4e7af079d680fc56da9027ff06cbfc01cc2f97df2b1c69126173f66ecdf9b094",
+        "path": "result/example.usdc",
+        "sha256": "1837cc4fd9d56c8dc6a67b705818ba424c0f28e33a0c232b4033ba0e1e289e98"
+      },
+      {
+        "bytes": 184,
+        "path": "result/layers/inputs/cameras.usda",
+        "sha256": "b116ec9bed2c8a8bed612648f463a461b53cee968a5b9360810090205ff4bc9d"
+      },
+      {
+        "bytes": 395848,
+        "path": "result/layers/out/display.usda",
+        "sha256": "a4717ed8ec19ba703c9fd755c8b55e679dad84d7755a3f23b4ae9704f48fc6a9"
+      },
+      {
+        "bytes": 1263170,
+        "path": "result/layers/out/reimport/derived.usda",
+        "sha256": "b0d78b17883805c875b2ade9118a49822f876a3b03fd22eaccc8767075596294"
+      },
+      {
+        "bytes": 685222,
+        "path": "result/layers/out/reimport/kind.usda",
+        "sha256": "8bee34e0b678970f51790bfd8ac36447948dc2fb88aa21ca59734af7c2a99901"
+      },
+      {
+        "bytes": 1263170,
+        "path": "result/layers/out/session/derived.usda",
+        "sha256": "8f2f7d3e7daf74bc659fde8f04bd2a58968c97841ff8bc18b37403cd96117eba"
+      },
+      {
+        "bytes": 230,
+        "path": "result/layers/out/session/diagnostics.ifc.usda",
+        "sha256": "697cb2bbfdcf9f0b0dbf51216608866d994082bf4cac775cb98a9479d5bd7697"
+      },
+      {
+        "bytes": 511,
+        "path": "result/layers/out/session/intent.usda",
+        "sha256": "b5c3bd5ace5d9f068b9195f59f5ddf6f49c97bca08a942955d6a1290f7abf000"
+      },
+      {
+        "bytes": 685205,
+        "path": "result/layers/out/session/kind.usda",
+        "sha256": "a8082f58357698911904b0d49a708603a69ad6df3bb3be084b9c743a0218799c"
+      },
+      {
+        "bytes": 339797,
+        "path": "result/layers/out/session/result.ifc.usda",
+        "sha256": "5a99d9c63b6abf20393876e72a4ca8f5de1a9b5fb0bf2e5bf2eaa52ed2ebefa8"
+      },
+      {
+        "bytes": 72626,
+        "path": "result/vanilla.png",
+        "sha256": "14647383a2af4dd078947ca2dbc6552bd0283627f2b43f7acd35bf219046e807"
+      }
+    ],
+    "normalization": "sdf-usda-v1",
+    "prim_count": 13404,
+    "vanilla": {
+      "bytes": 72626,
+      "height": 800,
+      "path": "result/vanilla.png",
+      "sha256": "14647383a2af4dd078947ca2dbc6552bd0283627f2b43f7acd35bf219046e807",
+      "width": 1280
+    }
+  },
+  "pytest": 134,
+  "renderFrame": {
+    "allCornersInside": true,
+    "bounds": [
+      [
+        26.0,
+        -0.10000000149011612,
+        0.0
+      ],
+      [
+        30.0,
+        3.050000000745058,
+        7.150000095367432
+      ]
+    ],
+    "clipping": [
+      16.258337020874023,
+      59.46091079711914
+    ],
+    "direction": [
+      -0.4082482904638629,
+      -0.8164965809277263,
+      -0.4082482904638627
+    ],
+    "position": [
+      42.72904343049828,
+      30.933086860624027,
+      18.304043478181995
+    ],
+    "purposes": "proxy,render"
+  },
+  "renders": [
+    {
+      "foregroundFraction": 0.152349609375,
+      "foregroundPixels": 156006,
+      "horizontalRange": 1.0,
+      "path": "renders/edited_corner.png",
+      "threshold8bit": 20,
+      "totalPixels": 1024000
+    }
+  ],
+  "roundtrip": {
+    "bodies": [
+      {
+        "divergent": false,
+        "extentError": 9.536743128535363e-08,
+        "id": "7cac4c99-c7d3-584f-a822-6410a492f040",
+        "ifc": {
+          "max": [
+            30.0,
+            0.10000000149011612,
+            7.150000095367432
+          ],
+          "min": [
+            26.0,
+            -0.10000000149011612,
+            0.0
+          ],
+          "volume": 5.7200001615285885
+        },
+        "native": {
+          "max": [
+            30.0,
+            0.1,
+            7.15
+          ],
+          "min": [
+            26.0,
+            -0.1,
+            0.0
+          ],
+          "volume": 5.72
+        },
+        "volumeError": 1.6152858872686693e-07,
+        "volumeRelativeError": 2.823926296598228e-08
+      },
+      {
+        "divergent": false,
+        "extentError": 9.536743128535363e-08,
+        "id": "dfd04dfb-5bf0-511e-8a96-ccf71a4e8a00",
+        "ifc": {
+          "max": [
+            26.149635443836452,
+            3.050000000745058,
+            4.749999904632569
+          ],
+          "min": [
+            26.05036455616355,
+            2.949999999254942,
+            0.9
+          ],
+          "volume": 0.0299443718452649
+        },
+        "native": {
+          "max": [
+            26.149635443704906,
+            3.05,
+            4.75
+          ],
+          "min": [
+            26.050364556295097,
+            2.95,
+            0.9
+          ],
+          "volume": 0.02994437249398091
+        },
+        "volumeError": 6.487160079948762e-10,
+        "volumeRelativeError": 2.1664037479004576e-08
+      }
+    ],
+    "cameras": [],
+    "cctvConverged": false,
+    "diagnostics": [],
+    "driverDifferences": [],
+    "driverTolerance": 0.0001,
+    "driversCompared": 14,
+    "driversConverged": true,
+    "elements": 2,
+    "extentTolerance": 0.0001,
+    "maxDriverError": 0.0,
+    "maxExtentError": 9.536743128535363e-08,
+    "maxVolumeRelativeError": 2.823926296598228e-08,
+    "missingDrivers": [],
+    "missingElements": [],
+    "volumeAbsoluteTolerance": 1e-06,
+    "volumeRelativeTolerance": 0.01
+  },
+  "skipped": 0,
+  "version": "0.2.0"
+}
