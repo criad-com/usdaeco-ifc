@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.3
+
+- public re-pin: toolchain v0.3.10, core v0.9.5, axis v0.1.5, sync v0.5.5,
+  datacentre v0.4.9, scenarios v0.8.0, cctv v0.5.6, buildup/wall/pipe v0.2.5,
+  usdSolid v0.1.5 and usdSolidOcct v0.1.4.
+- Record checked tag revisions and retain all supported requirement ranges.
+- Use the unmodified structure lint, including release-tag and version checks.
+- Republish the roundtrip: all ten USD files remain byte-identical; refresh
+  source-pin provenance and two sampled PNGs.
+- Verify 101 checks, 0 failed, 0 not run; 134 tests passed; unmodified
+  toolchain v0.3.10 structure lint: 29 checks, 0 failed.
+- Record four unproven public tag lookups, the single failed offline Nix
+  attempt and the bundled native schema version separately.
+
 ## 0.2.2
 
 - public names → github.com/criad-com.

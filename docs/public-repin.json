@@ -1,0 +1,335 @@
+{
+  "publicTags": [
+    {
+      "repo": "usdaeco-toolchain",
+      "ref": "v0.3.10",
+      "status": "verified",
+      "revision": "6328e1b5e63f89ea87984ad240b5c3ca37974795"
+    },
+    {
+      "repo": "usdaeco-core",
+      "ref": "v0.9.5",
+      "status": "verified",
+      "revision": "784e4a77b9b6e8340cf35f221332bc14dd9e5f20"
+    },
+    {
+      "repo": "usdaeco-axis",
+      "ref": "v0.1.5",
+      "status": "verified",
+      "revision": "910ef0486ae39fb74db801fc6fab95db88d9a1ac"
+    },
+    {
+      "repo": "usdaeco-sync",
+      "ref": "v0.5.5",
+      "status": "verified",
+      "revision": "0a907008dad539ce4acbb686cbf36b89db90d619"
+    },
+    {
+      "repo": "usdaeco-datacentre",
+      "ref": "v0.4.9",
+      "status": "verified",
+      "revision": "f070c59f3837b2b8d55d0b3af30c628585ba5418"
+    },
+    {
+      "repo": "usdaeco-scenarios",
+      "ref": "v0.8.0",
+      "status": "not-proven",
+      "reason": "Anonymous GitHub lookup requested credentials; public tag accessibility not proven.",
+      "httpStatus": 404
+    },
+    {
+      "repo": "usdaeco-cctv",
+      "ref": "v0.5.6",
+      "status": "not-proven",
+      "reason": "Anonymous GitHub lookup requested credentials; public tag accessibility not proven.",
+      "httpStatus": 404
+    },
+    {
+      "repo": "usdaeco-buildup",
+      "ref": "v0.2.5",
+      "status": "verified",
+      "revision": "98adc60eab69b131d2f6438539e86edab7c07bf0"
+    },
+    {
+      "repo": "usdaeco-wall",
+      "ref": "v0.2.5",
+      "status": "verified",
+      "revision": "1708f6adf73203cf2bee5b7ead5694a84a4d96a3"
+    },
+    {
+      "repo": "usdaeco-pipe",
+      "ref": "v0.2.5",
+      "status": "verified",
+      "revision": "052a8d426274fde1928e73898a90cf45f85bfd55"
+    },
+    {
+      "repo": "usdSolid",
+      "ref": "v0.1.5",
+      "status": "not-proven",
+      "reason": "Anonymous GitHub lookup requested credentials; public tag accessibility not proven.",
+      "httpStatus": 404
+    },
+    {
+      "repo": "usdSolidOcct",
+      "ref": "v0.1.4",
+      "status": "not-proven",
+      "reason": "Anonymous GitHub lookup requested credentials; public tag accessibility not proven.",
+      "httpStatus": 404
+    },
+    {
+      "repo": "aeco-toolchain",
+      "ref": "v0.4.0",
+      "status": "verified",
+      "revision": "afbea7ce2b012e55af54047311fad37339eb56df"
+    },
+    {
+      "repo": "usdaeco-core",
+      "ref": "v0.9.2",
+      "status": "verified",
+      "revision": "75282989be3fdecfa778465cb57a7f9530ce506e"
+    }
+  ],
+  "directPublicTagsVerified": 8,
+  "directPublicTagsNotProven": 4,
+  "recursivePublicTagsVerified": 2,
+  "checkedPins": {
+    "toolchain": {
+      "repo": "usdaeco-toolchain",
+      "library": "usdaeco-toolchain",
+      "ref": "v0.3.10",
+      "revision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73"
+    },
+    "core": {
+      "repo": "usdaeco-core",
+      "library": "usdAeco",
+      "ref": "v0.9.5",
+      "revision": "683adc3280254bc71b396a9c64a359cc708788f4"
+    },
+    "sync": {
+      "repo": "usdaeco-sync",
+      "library": "usdAecoSync",
+      "ref": "v0.5.5",
+      "revision": "2f13dffb5e29076787e6e9b81a701ce2a0ab7e8a"
+    },
+    "datacentre": {
+      "repo": "usdaeco-datacentre",
+      "library": "usdaeco-datacentre",
+      "ref": "v0.4.9",
+      "revision": "00ac72998b1a92aa6c9e8422803c3350ca8dab37"
+    },
+    "scenarios": {
+      "repo": "usdaeco-scenarios",
+      "library": "usdaeco-scenarios",
+      "ref": "v0.8.0",
+      "revision": "83de1cdab2b1f26fe7d209d9fb28090447484666"
+    },
+    "cctv": {
+      "repo": "usdaeco-cctv",
+      "library": "usdAecoCctv",
+      "ref": "v0.5.6",
+      "revision": "567eb9cbdec045a6581c3f5863ac11a22f46e153"
+    },
+    "buildup": {
+      "repo": "usdaeco-buildup",
+      "library": "usdAecoBuildUp",
+      "ref": "v0.2.5",
+      "revision": "99ac95080bf4d1403d410b356c4645c3f251aa40"
+    },
+    "wall": {
+      "repo": "usdaeco-wall",
+      "library": "usdAecoWall",
+      "ref": "v0.2.5",
+      "revision": "ce4b2fa54bb4c85d495237a93e3c883df9c1e1d6"
+    },
+    "pipe": {
+      "repo": "usdaeco-pipe",
+      "library": "usdAecoPipe",
+      "ref": "v0.2.5",
+      "revision": "12179dfb86e93ec605dd8548d19c50d5671029ee"
+    },
+    "axis": {
+      "repo": "usdaeco-axis",
+      "library": "usdAecoAxis",
+      "ref": "v0.1.5",
+      "revision": "ecff1d98bcc45c22fcceefd453374671900793ae"
+    },
+    "usdSolid": {
+      "repo": "usdSolid",
+      "library": "usdSolid",
+      "ref": "v0.1.5",
+      "revision": "5792a6f56de3a7f881a73ba11b3635871cd2dc4e"
+    },
+    "usdSolidOcct": {
+      "repo": "usdSolidOcct",
+      "library": "usdSolidOcct",
+      "ref": "v0.1.4",
+      "revision": "0936e4e355b9ff5971ee5dbb4e8a47dcdea9e3fe"
+    }
+  },
+  "publication": {
+    "release": "0.2.3",
+    "baseline": "0.2.2",
+    "files": [
+      {
+        "path": "examples/roundtrip/expected/findings.json",
+        "beforeSha256": "e5271416739d4a909d4b3780fa37af7fcc27465d4c3541fa79e402619ba20423",
+        "sha256": "e5271416739d4a909d4b3780fa37af7fcc27465d4c3541fa79e402619ba20423",
+        "bytes": 1845,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/renders/.keep",
+        "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/renders/edited_corner.png",
+        "beforeSha256": "4e2dcd38d542a6257d7be950960414e7d917d428339a2ef87dfbee075bc98e33",
+        "sha256": "42ebcca745ce907bb42349a8409019ac36815fcc95a85d2659954fc620faf3b8",
+        "bytes": 72852,
+        "byteIdentical": false,
+        "pixels": {
+          "width": 1280,
+          "height": 800,
+          "maxChannelDifference": 92,
+          "meanAbsoluteChannelDifference": 0.024842447916666666,
+          "changedFraction": 0.0049580078125
+        }
+      },
+      {
+        "path": "examples/roundtrip/result/README.md",
+        "beforeSha256": "e9b7cec593e948fe63845d65e69d17d730ca96db1b397a2035a726838cb6ee1a",
+        "sha256": "89283fb1a0721f89758bda0ece6fb3658eb7c0cd92191131148deceaef5b035b",
+        "bytes": 837,
+        "byteIdentical": false
+      },
+      {
+        "path": "examples/roundtrip/result/example.usdc",
+        "beforeSha256": "1837cc4fd9d56c8dc6a67b705818ba424c0f28e33a0c232b4033ba0e1e289e98",
+        "sha256": "1837cc4fd9d56c8dc6a67b705818ba424c0f28e33a0c232b4033ba0e1e289e98",
+        "bytes": 1738843,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/inputs/cameras.usda",
+        "beforeSha256": "b116ec9bed2c8a8bed612648f463a461b53cee968a5b9360810090205ff4bc9d",
+        "sha256": "b116ec9bed2c8a8bed612648f463a461b53cee968a5b9360810090205ff4bc9d",
+        "bytes": 184,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/out/display.usda",
+        "beforeSha256": "a4717ed8ec19ba703c9fd755c8b55e679dad84d7755a3f23b4ae9704f48fc6a9",
+        "sha256": "a4717ed8ec19ba703c9fd755c8b55e679dad84d7755a3f23b4ae9704f48fc6a9",
+        "bytes": 395848,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/out/reimport/derived.usda",
+        "beforeSha256": "b0d78b17883805c875b2ade9118a49822f876a3b03fd22eaccc8767075596294",
+        "sha256": "b0d78b17883805c875b2ade9118a49822f876a3b03fd22eaccc8767075596294",
+        "bytes": 1263170,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/out/reimport/kind.usda",
+        "beforeSha256": "8bee34e0b678970f51790bfd8ac36447948dc2fb88aa21ca59734af7c2a99901",
+        "sha256": "8bee34e0b678970f51790bfd8ac36447948dc2fb88aa21ca59734af7c2a99901",
+        "bytes": 685222,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/out/session/derived.usda",
+        "beforeSha256": "8f2f7d3e7daf74bc659fde8f04bd2a58968c97841ff8bc18b37403cd96117eba",
+        "sha256": "8f2f7d3e7daf74bc659fde8f04bd2a58968c97841ff8bc18b37403cd96117eba",
+        "bytes": 1263170,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/out/session/diagnostics.ifc.usda",
+        "beforeSha256": "697cb2bbfdcf9f0b0dbf51216608866d994082bf4cac775cb98a9479d5bd7697",
+        "sha256": "697cb2bbfdcf9f0b0dbf51216608866d994082bf4cac775cb98a9479d5bd7697",
+        "bytes": 230,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/out/session/intent.usda",
+        "beforeSha256": "b5c3bd5ace5d9f068b9195f59f5ddf6f49c97bca08a942955d6a1290f7abf000",
+        "sha256": "b5c3bd5ace5d9f068b9195f59f5ddf6f49c97bca08a942955d6a1290f7abf000",
+        "bytes": 511,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/out/session/kind.usda",
+        "beforeSha256": "a8082f58357698911904b0d49a708603a69ad6df3bb3be084b9c743a0218799c",
+        "sha256": "a8082f58357698911904b0d49a708603a69ad6df3bb3be084b9c743a0218799c",
+        "bytes": 685205,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/layers/out/session/result.ifc.usda",
+        "beforeSha256": "5a99d9c63b6abf20393876e72a4ca8f5de1a9b5fb0bf2e5bf2eaa52ed2ebefa8",
+        "sha256": "5a99d9c63b6abf20393876e72a4ca8f5de1a9b5fb0bf2e5bf2eaa52ed2ebefa8",
+        "bytes": 339797,
+        "byteIdentical": true
+      },
+      {
+        "path": "examples/roundtrip/result/vanilla.png",
+        "beforeSha256": "14647383a2af4dd078947ca2dbc6552bd0283627f2b43f7acd35bf219046e807",
+        "sha256": "cdfa791cd4a7f54721c4e744f0c11efc3c8857007290845c0d7b7c8cda3951c7",
+        "bytes": 72634,
+        "byteIdentical": false,
+        "pixels": {
+          "width": 1280,
+          "height": 800,
+          "maxChannelDifference": 109,
+          "meanAbsoluteChannelDifference": 0.0244208984375,
+          "changedFraction": 0.00489453125
+        }
+      }
+    ],
+    "usdFilesByteIdentical": 10,
+    "sourceLayersUnchanged": true,
+    "primCount": 13404,
+    "resultBytes": 6445651,
+    "requirementRangesUnchanged": true,
+    "baselineRevision": "8eb72e89af15e8642d914948384fe73038cc7817",
+    "converterFilesUnchanged": 7,
+    "findingsUnchanged": true
+  },
+  "nativeRuntime": {
+    "bridgeVersion": "0.1.4",
+    "schemaVersion": "0.1.4",
+    "schemaRevision": "8d03bd615744ffbade4527fd9c8fd7dfee99f21f",
+    "requestedSchemaVersion": "0.1.5",
+    "upstreamSchemaRevision": "1f6d6d31f1cbeed452b4e1c312bf974d0519d71d",
+    "upstreamValidatorRevision": "152c37a46c8cb71fbe1363772f1ccffe6e91c78b",
+    "upstreamMatchesPinnedSource": true,
+    "toolchainVersion": "0.3.10",
+    "toolchainRevision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73",
+    "source": "Prebuilt usdSolidOcct v0.1.4 runtime; its schema package remains v0.1.4. usdSolid v0.1.5 changes packaging, with unchanged upstream schema and validator revisions."
+  },
+  "nix": {
+    "attempts": 1,
+    "exitCode": 1,
+    "status": "not-proven",
+    "cause": "The local recursive aeco-toolchain override was unavailable after its archive request returned HTTP 404. The command was issued before the failed preparation was handled and stopped at the missing path; evaluation and build were not reached. No retry."
+  },
+  "gate": {
+    "checks": 101,
+    "failed": 0,
+    "notRun": 0,
+    "pytest": {
+      "passed": 134,
+      "skipped": 0
+    },
+    "structure": {
+      "toolchain": "v0.3.10",
+      "checks": 29,
+      "failed": 0,
+      "unmodified": true
+    }
+  }
+}

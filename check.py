@@ -10,7 +10,7 @@ import sys
 import tempfile
 import bootstrap
 from usdaeco_check import Report
-from usdaeco_ifc.exact_contracts import check_structure
+from usdaeco_check.structure import check_structure
 from usdaeco_check.example import check_example
 from usdaeco_ifc.acceptance import build_base, converter_parity, host_cases
 from usdaeco_ifc.runtime import python

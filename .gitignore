@@ -11,3 +11,4 @@ build/
 flake.lock
 STEERING.md
 *.dist-info/
+examples/roundtrip/inputs/source

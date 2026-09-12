@@ -135,7 +135,7 @@ stops at core output. An element-kind library's importer is a further
 pass over the same stage (or a further layer), reading `aeco:class:ifc:
 code` and the `aeco:props:` quarantine and authoring its typed API — the
 seam where a converter earns *native* import depth in the other direction
-([06 §6.2](https://github.com/criad-com/usdaeco-core/blob/v0.8.4/docs/06-interfacing-other-formats.md)).
+([06 §6.2](https://github.com/criad-com/usdaeco-core/blob/v0.9.5/docs/06-interfacing-other-formats.md)).
 
 ## 5.4 What is deliberately lossy, and where it lives
 

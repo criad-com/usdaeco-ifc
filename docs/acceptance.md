@@ -1,6 +1,73 @@
 # IFC integration acceptance
 
-## Public-name patch (v0.2.2)
+## Public re-pin (v0.2.3)
+
+All 12 direct family inputs use the requested release tags. Their checked
+source revisions are recorded beside the refs in `dependencies.json` and the
+regenerated example manifest. The supported requirement ranges are unchanged.
+The gate now calls the unmodified toolchain v0.3.10 structure lint.
+
+| Acceptance item | Observed result |
+|---|---|
+| Direct tags and checked source revisions | 12/12 match the requested releases |
+| Anonymous public tag lookup | 8/12 direct tags verified; 4 not proven |
+| Recursive public tags | 2/2 verified: processing toolchain v0.4.0 and core fixture v0.9.2 |
+| Python gate | 101 checks, 0 failed, 0 not run |
+| Regression tests | 134 passed, 0 skipped |
+| Unmodified structure lint | 29 checks, 0 failed; 14 schema rules inapplicable |
+| Core validators | 8 loaded; 0 errors, 2 classification warnings |
+| Native regression cases | 21 synthetic, 9 camera, 9 datacentre; all passed |
+| Exact clash export | 2,980/2,980 products; 32 IFC classes; 0 failures |
+| Roundtrip | 2 elements; 14 driver values; 0 convergence differences |
+| Published USD | 10/10 files byte-identical; 13,404 plugin-free prims |
+| Source layers, findings and converter | Unchanged; 7 converter source files byte-identical |
+| Vanilla PNG | 1280 × 800; 72,634 bytes; fresh plugin-free render |
+| Published result | 12 files; 6,445,651 bytes |
+| Release metadata | 0.2.3 in library, Python project and source package |
+| Previous-organization flake references | 0 |
+| Whitespace check | `git diff --check` clean |
+| Nix | 1 offline attempt; stopped before evaluation; not proven |
+
+Regenerate with the README environment and
+`env -u PYTHONPATH python examples/roundtrip/run.py --publish`, then run
+`env -u PYTHONPATH PYTHONPATH=$AECO_CORE_ROOT:$PWD python check.py`.
+The gate includes pytest and requires the core validators to import and load.
+Source checkouts were frozen at the checked revisions; dependency checkouts
+were not modified. [The re-pin receipt](public-repin.json) records before/after
+hashes, public lookups and runtime provenance; [the gate receipt](acceptance.json)
+records the measured integration and exact-export results.
+
+### Deviations
+
+- Anonymous GitHub lookups of scenarios v0.8.0, cctv v0.5.6, usdSolid v0.1.5
+  and usdSolidOcct v0.1.4 requested credentials; their release pages returned
+  HTTP 404. The requested tags are retained, but public access to these four
+  inputs needs verification before outsider resolution can be claimed.
+- The single `nix flake check --offline --no-write-lock-file` attempt used
+  local direct and recursive overrides. An archive request for the recursive
+  processing toolchain returned HTTP 404; the command ran before that failed
+  preparation was handled and stopped at the unavailable override path.
+  This local preparation failure proves neither evaluation nor a build.
+  No retry was made; online flake resolution remains not proven.
+- Exact acceptance used the published usdSolidOcct v0.1.4 runtime, which
+  contains usdSolid v0.1.4. Its upstream schema and validator revisions match
+  the requested usdSolid v0.1.5 source. The
+  [usdSolid v0.1.5 changelog](https://github.com/criad-com/usdSolid/blob/v0.1.5/CHANGELOG.md)
+  records the packaging change and blocked native rebuild. A native v0.1.5
+  package is not proven by this gate.
+- Two freshly rendered PNGs have new bytes. Changed pixels are 0.496% for
+  the example and 0.489% for vanilla, with mean absolute RGB differences
+  below 0.025/255. All geometry and layer bytes remain identical; the result
+  README changes only its data-centre source tag. The
+  [data-centre v0.4.9 changelog](https://github.com/criad-com/usdaeco-datacentre/blob/v0.4.9/CHANGELOG.md)
+  likewise records byte-identical published stages. Full artifact-byte
+  equality is not claimed for sampled PNGs.
+- Historical fixture references remain provenance records outside the flake
+  inputs. The existing converter parity limit also remains: all three
+  authored layer texts match, while the freshly packed semantic crate has a
+  different binary encoding. The committed roundtrip crate is byte-identical.
+
+## Public-name baseline (v0.2.2)
 
 Public flake inputs and documentation links now use `github.com/criad-com`.
 Toolchain v0.3.8 is the only changed dependency pin. Its unmodified structure
@@ -63,7 +130,7 @@ checks and adds six full-variant exact checks.
 | Crate / largest USDA | 1,738,843 / 1,263,170 bytes |
 | Nix | 1 attempt; unresolved nested toolchain input; NOT PROVEN |
 
-The [machine-readable evidence](acceptance.json) records each native case,
+The current [machine-readable evidence](acceptance.json) records each native case,
 converter comparison, measured roundtrip and exact per-class census. All
 inputs use the stated release tags. The data-centre IFC is generated in
 scratch space; no dependency checkout is modified.

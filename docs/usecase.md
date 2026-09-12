@@ -41,11 +41,11 @@ The [round-trip runner](../examples/roundtrip/run.py) resolves actual facility p
 | IFC native validation | native severity | touched-closure schema and geometry findings |
 | Convergence | separate driver/body verdicts | missing values, axis, size, height, bounds and volume differences |
 
-Optional full EXPRESS and IDS checks remain explicit; IDS requires ifctester. Native operation tables are owned by the [sync host contract](https://github.com/criad-com/usdaeco-sync/blob/v0.5.2/docs/host-contract.md).
+Optional full EXPRESS and IDS checks remain explicit; IDS requires ifctester. Native operation tables are owned by the [sync host contract](https://github.com/criad-com/usdaeco-sync/blob/v0.5.5/docs/host-contract.md).
 
 ## 6 The example on the demo data centre
 
-The runner composes the published base USD from datacentre v0.4.5 and generates
+The runner composes the published base USD from datacentre v0.4.9 and generates
 its matching IFC in scratch space. It edits one wall and one pipe, exports,
 reimports, and compares final drivers and bodies with native receipts.
 [The committed result](../examples/roundtrip/README.md) contains the final
@@ -64,8 +64,8 @@ BrepArray and proxy-twin layers. Its default converter path remains unchanged.
 
 ## 8 Out of scope and open questions
 
-The future `aeco-ifc-exact` pass needs OCCT and is not built here. Live Blender and Revit integrations own their own runtimes. The current IFC host requires metre length units; the converter also handles millimetres. No universal USD-to-IFC reconstruction is claimed.
+The optional `aeco-ifc-exact` pass requires its separate OCCT runtime. Live Blender and Revit integrations own their own runtimes. The current IFC host requires metre length units; the converter also handles millimetres. No universal USD-to-IFC reconstruction is claimed.
 
 ## 9 Status
 
-Version 0.2.2, integration kind with no schema directory. S01–S05 and S20–S29 apply; S06–S19 are not applicable. Core is v0.9.2; AecoAxisAPI is supplied by axis v0.1.2. Source metadata allows the entry point to be exercised without installing packages in a shared interpreter. See the acceptance report for observed counts and unresolved packaging or Nix limits.
+Version 0.2.3, integration kind with no schema directory. S01–S05 and S20–S29 apply; S06–S19 are not applicable. Core is v0.9.5; AecoAxisAPI is supplied by axis v0.1.5. Source metadata allows the entry point to be exercised without installing packages in a shared interpreter. See the acceptance report for observed counts and unresolved packaging or Nix limits.

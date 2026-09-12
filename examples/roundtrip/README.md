@@ -11,10 +11,11 @@ To regenerate from the repository root, follow the main README environment and r
 env -u PYTHONPATH python examples/roundtrip/run.py --publish
 ```
 
-Inputs are the published datacentre v0.4.5 `base` USD, the corresponding IFC
-generated in scratch space, and `inputs/cameras.usda`. Core v0.9.2, axis v0.1.2
-and sync v0.5.2 supply semantics and the transaction engine. The toolchain
-v0.3.8 publication contract includes the native-kit name compatibility check. Ordinary runs refresh `out/` and compare findings; only `--publish`
+Inputs are the published datacentre v0.4.9 `base` USD, the corresponding IFC
+generated in scratch space, and `inputs/cameras.usda`. Core v0.9.5, axis v0.1.5
+and sync v0.5.5 supply semantics and the transaction engine. The toolchain
+v0.3.10 publication contract checks release-tag family inputs and package
+versions. Ordinary runs refresh `out/` and compare findings; only `--publish`
 replaces committed outputs.
 
 The wall height increases by 0.15 m and the pipe length by 0.20 m. The pipe

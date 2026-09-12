@@ -1,7 +1,7 @@
 {
   "actual_findings_sha256": "10a42a69149ef46140e1645147b34c3f51bf4678820369ecebd6e924f23b49b2",
   "datacentre": {
-    "ref": "v0.4.5",
+    "ref": "v0.4.9",
     "variant": "base"
   },
   "facility": "demo-datacentre-01",
@@ -9,81 +9,93 @@
   "pins": {
     "axis": {
       "library": "usdAecoAxis",
-      "ref": "v0.1.2",
-      "repo": "usdaeco-axis"
+      "ref": "v0.1.5",
+      "repo": "usdaeco-axis",
+      "revision": "ecff1d98bcc45c22fcceefd453374671900793ae"
     },
     "buildup": {
       "library": "usdAecoBuildUp",
-      "ref": "v0.2.1",
-      "repo": "usdaeco-buildup"
+      "ref": "v0.2.5",
+      "repo": "usdaeco-buildup",
+      "revision": "99ac95080bf4d1403d410b356c4645c3f251aa40"
     },
     "cctv": {
       "library": "usdAecoCctv",
-      "ref": "v0.5.2",
-      "repo": "usdaeco-cctv"
+      "ref": "v0.5.6",
+      "repo": "usdaeco-cctv",
+      "revision": "567eb9cbdec045a6581c3f5863ac11a22f46e153"
     },
     "core": {
       "library": "usdAeco",
-      "ref": "v0.9.2",
-      "repo": "usdaeco-core"
+      "ref": "v0.9.5",
+      "repo": "usdaeco-core",
+      "revision": "683adc3280254bc71b396a9c64a359cc708788f4"
     },
     "datacentre": {
       "library": "usdaeco-datacentre",
-      "ref": "v0.4.5",
-      "repo": "usdaeco-datacentre"
+      "ref": "v0.4.9",
+      "repo": "usdaeco-datacentre",
+      "revision": "00ac72998b1a92aa6c9e8422803c3350ca8dab37"
     },
     "pipe": {
       "library": "usdAecoPipe",
-      "ref": "v0.2.1",
-      "repo": "usdaeco-pipe"
+      "ref": "v0.2.5",
+      "repo": "usdaeco-pipe",
+      "revision": "12179dfb86e93ec605dd8548d19c50d5671029ee"
     },
     "scenarios": {
       "library": "usdaeco-scenarios",
-      "ref": "v0.6.0",
-      "repo": "usdaeco-scenarios"
+      "ref": "v0.8.0",
+      "repo": "usdaeco-scenarios",
+      "revision": "83de1cdab2b1f26fe7d209d9fb28090447484666"
     },
     "sync": {
       "library": "usdAecoSync",
-      "ref": "v0.5.2",
-      "repo": "usdaeco-sync"
+      "ref": "v0.5.5",
+      "repo": "usdaeco-sync",
+      "revision": "2f13dffb5e29076787e6e9b81a701ce2a0ab7e8a"
     },
     "toolchain": {
       "library": "usdaeco-toolchain",
-      "ref": "v0.3.8",
-      "repo": "usdaeco-toolchain"
+      "ref": "v0.3.10",
+      "repo": "usdaeco-toolchain",
+      "revision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73"
     },
     "usdSolid": {
       "library": "usdSolid",
-      "ref": "v0.1.0",
-      "repo": "usdSolid"
+      "ref": "v0.1.5",
+      "repo": "usdSolid",
+      "revision": "5792a6f56de3a7f881a73ba11b3635871cd2dc4e"
     },
     "usdSolidOcct": {
       "library": "usdSolidOcct",
-      "ref": "v0.1.0",
-      "repo": "usdSolidOcct"
+      "ref": "v0.1.4",
+      "repo": "usdSolidOcct",
+      "revision": "0936e4e355b9ff5971ee5dbb4e8a47dcdea9e3fe"
     },
     "wall": {
       "library": "usdAecoWall",
-      "ref": "v0.2.1",
-      "repo": "usdaeco-wall"
+      "ref": "v0.2.5",
+      "repo": "usdaeco-wall",
+      "revision": "ce4b2fa54bb4c85d495237a93e3c883df9c1e1d6"
     }
   },
   "renders": [
     {
-      "bytes": 72740,
+      "bytes": 72852,
       "height": 800,
       "path": "renders/edited_corner.png",
-      "sha256": "4e2dcd38d542a6257d7be950960414e7d917d428339a2ef87dfbee075bc98e33",
+      "sha256": "42ebcca745ce907bb42349a8409019ac36815fcc95a85d2659954fc620faf3b8",
       "width": 1280
     }
   ],
   "result": {
-    "bytes": 6445643,
+    "bytes": 6445651,
     "files": [
       {
         "bytes": 837,
         "path": "result/README.md",
-        "sha256": "e9b7cec593e948fe63845d65e69d17d730ca96db1b397a2035a726838cb6ee1a"
+        "sha256": "89283fb1a0721f89758bda0ece6fb3658eb7c0cd92191131148deceaef5b035b"
       },
       {
         "bytes": 1738843,
@@ -137,18 +149,18 @@
         "sha256": "5a99d9c63b6abf20393876e72a4ca8f5de1a9b5fb0bf2e5bf2eaa52ed2ebefa8"
       },
       {
-        "bytes": 72626,
+        "bytes": 72634,
         "path": "result/vanilla.png",
-        "sha256": "14647383a2af4dd078947ca2dbc6552bd0283627f2b43f7acd35bf219046e807"
+        "sha256": "cdfa791cd4a7f54721c4e744f0c11efc3c8857007290845c0d7b7c8cda3951c7"
       }
     ],
     "normalization": "sdf-usda-v1",
     "prim_count": 13404,
     "vanilla": {
-      "bytes": 72626,
+      "bytes": 72634,
       "height": 800,
       "path": "result/vanilla.png",
-      "sha256": "14647383a2af4dd078947ca2dbc6552bd0283627f2b43f7acd35bf219046e807",
+      "sha256": "cdfa791cd4a7f54721c4e744f0c11efc3c8857007290845c0d7b7c8cda3951c7",
       "width": 1280
     }
   },

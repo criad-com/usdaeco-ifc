@@ -3,62 +3,74 @@
     "toolchain": {
       "repo": "usdaeco-toolchain",
       "library": "usdaeco-toolchain",
-      "ref": "v0.3.8"
+      "ref": "v0.3.10",
+      "revision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73"
     },
     "core": {
       "repo": "usdaeco-core",
       "library": "usdAeco",
-      "ref": "v0.9.2"
+      "ref": "v0.9.5",
+      "revision": "683adc3280254bc71b396a9c64a359cc708788f4"
     },
     "sync": {
       "repo": "usdaeco-sync",
       "library": "usdAecoSync",
-      "ref": "v0.5.2"
+      "ref": "v0.5.5",
+      "revision": "2f13dffb5e29076787e6e9b81a701ce2a0ab7e8a"
     },
     "datacentre": {
       "repo": "usdaeco-datacentre",
       "library": "usdaeco-datacentre",
-      "ref": "v0.4.5"
+      "ref": "v0.4.9",
+      "revision": "00ac72998b1a92aa6c9e8422803c3350ca8dab37"
     },
     "scenarios": {
       "repo": "usdaeco-scenarios",
       "library": "usdaeco-scenarios",
-      "ref": "v0.6.0"
+      "ref": "v0.8.0",
+      "revision": "83de1cdab2b1f26fe7d209d9fb28090447484666"
     },
     "cctv": {
       "repo": "usdaeco-cctv",
       "library": "usdAecoCctv",
-      "ref": "v0.5.2"
+      "ref": "v0.5.6",
+      "revision": "567eb9cbdec045a6581c3f5863ac11a22f46e153"
     },
     "buildup": {
       "repo": "usdaeco-buildup",
       "library": "usdAecoBuildUp",
-      "ref": "v0.2.1"
+      "ref": "v0.2.5",
+      "revision": "99ac95080bf4d1403d410b356c4645c3f251aa40"
     },
     "wall": {
       "repo": "usdaeco-wall",
       "library": "usdAecoWall",
-      "ref": "v0.2.1"
+      "ref": "v0.2.5",
+      "revision": "ce4b2fa54bb4c85d495237a93e3c883df9c1e1d6"
     },
     "pipe": {
       "repo": "usdaeco-pipe",
       "library": "usdAecoPipe",
-      "ref": "v0.2.1"
+      "ref": "v0.2.5",
+      "revision": "12179dfb86e93ec605dd8548d19c50d5671029ee"
     },
     "axis": {
       "repo": "usdaeco-axis",
       "library": "usdAecoAxis",
-      "ref": "v0.1.2"
+      "ref": "v0.1.5",
+      "revision": "ecff1d98bcc45c22fcceefd453374671900793ae"
     },
     "usdSolid": {
       "repo": "usdSolid",
       "library": "usdSolid",
-      "ref": "v0.1.0"
+      "ref": "v0.1.5",
+      "revision": "5792a6f56de3a7f881a73ba11b3635871cd2dc4e"
     },
     "usdSolidOcct": {
       "repo": "usdSolidOcct",
       "library": "usdSolidOcct",
-      "ref": "v0.1.0"
+      "ref": "v0.1.4",
+      "revision": "0936e4e355b9ff5971ee5dbb4e8a47dcdea9e3fe"
     }
   },
   "observations": {
@@ -71,59 +83,54 @@
       "entryPoint": "pyproject source metadata"
     },
     "usdAecoSync": {
-      "version": "0.5.2",
-      "revision": "1ed6e5d50425811c5c85326630819bc1f04a1a15",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.5.5",
+      "revision": "2f13dffb5e29076787e6e9b81a701ce2a0ab7e8a",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdAecoCctv": {
-      "version": "0.5.2",
-      "revision": "179318a090657af530d83552388e0c6fd9360631",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.5.6",
+      "revision": "567eb9cbdec045a6581c3f5863ac11a22f46e153",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdAecoBuildUp": {
-      "version": "0.2.1",
-      "revision": "0bf6190f060e278d4f3379b52903032e3dd9b60c",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.2.5",
+      "revision": "99ac95080bf4d1403d410b356c4645c3f251aa40",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdaeco-scenarios": {
-      "version": "0.6.0",
-      "revision": "0c9327ed67f9e4585b3cd51a52c5b053c08b3643",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.8.0",
+      "revision": "83de1cdab2b1f26fe7d209d9fb28090447484666",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdAecoWall": {
-      "version": "0.2.1",
-      "revision": "d6dca4e4f4905ae32d56246a677777b6b42c9363",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.2.5",
+      "revision": "ce4b2fa54bb4c85d495237a93e3c883df9c1e1d6",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdAecoPipe": {
-      "version": "0.2.1",
-      "revision": "b07db9ecfab55754a7b2a959ab3cd0d1872032eb",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.2.5",
+      "revision": "12179dfb86e93ec605dd8548d19c50d5671029ee",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdAeco": {
-      "version": "0.9.2",
-      "revision": "11000b2ca7a2f560bfcd1ffd439bf9b71a5f5c18",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.9.5",
+      "revision": "683adc3280254bc71b396a9c64a359cc708788f4",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdAecoAxis": {
-      "version": "0.1.2",
-      "revision": "17ca6c18f7c263c3501bc3e3580d44f630548591",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.1.5",
+      "revision": "ecff1d98bcc45c22fcceefd453374671900793ae",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdaeco-toolchain": {
-      "version": "0.3.8",
-      "revision": "4ec5051c419ef056dba594e64be661cb41810275",
-      "source": "Exact tagged source archive; public-name patch."
+      "version": "0.3.10",
+      "revision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdaeco-datacentre": {
-      "version": "0.4.5",
-      "revision": "0b18702612ff2c268b18e3da0f3c7b62393320bb",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
-    },
-    "nix": {
-      "attempts": 1,
-      "status": "not-proven",
-      "cause": "Offline flake check with local direct and toolchain source overrides could not resolve the uncached transitive OpenUSD input; external network access was blocked. No retry."
+      "version": "0.4.9",
+      "revision": "00ac72998b1a92aa6c9e8422803c3350ca8dab37",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "render": {
       "usd": "0.26.11",
@@ -131,16 +138,49 @@
       "source": "Matching native OpenUSD executable; family gate interpreter remains usd-core 26.8."
     },
     "usdSolid": {
-      "version": "0.1.0",
-      "revision": "71e3c8dd0c08e0e629c2a4d3da4d1256f4316ac6",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.1.5",
+      "revision": "5792a6f56de3a7f881a73ba11b3635871cd2dc4e",
+      "source": "Exact tagged source archive; public re-pin."
     },
     "usdSolidOcct": {
-      "version": "0.1.0",
-      "revision": "a5bfb17ca2eecdad7e540bc9d1e12f47b1e97af7",
-      "source": "Exact tagged source archive; train aeco-0.7.0."
+      "version": "0.1.4",
+      "revision": "0936e4e355b9ff5971ee5dbb4e8a47dcdea9e3fe",
+      "source": "Exact tagged source archive; public re-pin."
     },
-    "releaseTrain": "aeco-0.7.0",
+    "releaseTrain": "aeco-0.8.0",
+    "nativeRuntime": {
+      "bridgeVersion": "0.1.4",
+      "schemaVersion": "0.1.4",
+      "schemaRevision": "8d03bd615744ffbade4527fd9c8fd7dfee99f21f",
+      "requestedSchemaVersion": "0.1.5",
+      "upstreamSchemaRevision": "1f6d6d31f1cbeed452b4e1c312bf974d0519d71d",
+      "upstreamValidatorRevision": "152c37a46c8cb71fbe1363772f1ccffe6e91c78b",
+      "upstreamMatchesPinnedSource": true,
+      "toolchainVersion": "0.3.10",
+      "toolchainRevision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73",
+      "source": "Prebuilt usdSolidOcct v0.1.4 runtime; its schema package remains v0.1.4. usdSolid v0.1.5 changes packaging, with unchanged upstream schema and validator revisions."
+    },
+    "nix": {
+      "attempts": 1,
+      "exitCode": 1,
+      "status": "not-proven",
+      "cause": "The local recursive aeco-toolchain override was unavailable after its archive request returned HTTP 404. The command was issued before the failed preparation was handled and stopped at the missing path; evaluation and build were not reached. No retry."
+    },
+    "publicRepin": {
+      "directPins": 12,
+      "checkedRevisions": 12,
+      "publicTagsVerified": 8,
+      "publicTagsNotProven": 4,
+      "recursivePublicTagsVerified": 2,
+      "resultRepublished": true,
+      "usdFilesByteIdentical": 10,
+      "sourceLayersUnchanged": true,
+      "findingsUnchanged": true,
+      "converterFilesUnchanged": 7,
+      "rangesWidened": 0,
+      "sampledPngsChanged": 2,
+      "evidence": "docs/public-repin.json"
+    },
     "gate": {
       "checks": 101,
       "failed": 0,
@@ -150,20 +190,11 @@
         "skipped": 0
       },
       "structure": {
-        "toolchain": "v0.3.8",
+        "toolchain": "v0.3.10",
         "checks": 29,
         "failed": 0,
         "unmodified": true
       }
-    },
-    "publicNames": {
-      "publicReferenceReplacements": 15,
-      "oldPublicReferences": 0,
-      "otherDependencyPinsUnchanged": 11,
-      "resultFilesUnchanged": 12,
-      "converterFilesUnchanged": 7,
-      "resultRepublished": false,
-      "manifestChange": "toolchain pin only"
     }
   },
   "fixtures": {

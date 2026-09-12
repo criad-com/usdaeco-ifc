@@ -1,5 +1,5 @@
 {
-  "checks": 100,
+  "checks": 101,
   "converter": {
     "conversion": {
       "blankHeadingsOmitted": 0,
@@ -461,144 +461,210 @@
   },
   "notRun": 0,
   "observations": {
+    "gate": {
+      "checks": 101,
+      "failed": 0,
+      "notRun": 0,
+      "pytest": {
+        "passed": 134,
+        "skipped": 0
+      },
+      "structure": {
+        "checks": 29,
+        "failed": 0,
+        "toolchain": "v0.3.10",
+        "unmodified": true
+      }
+    },
+    "nativeRuntime": {
+      "bridgeVersion": "0.1.4",
+      "requestedSchemaVersion": "0.1.5",
+      "schemaRevision": "8d03bd615744ffbade4527fd9c8fd7dfee99f21f",
+      "schemaVersion": "0.1.4",
+      "source": "Prebuilt usdSolidOcct v0.1.4 runtime; its schema package remains v0.1.4. usdSolid v0.1.5 changes packaging, with unchanged upstream schema and validator revisions.",
+      "toolchainRevision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73",
+      "toolchainVersion": "0.3.10",
+      "upstreamMatchesPinnedSource": true,
+      "upstreamSchemaRevision": "1f6d6d31f1cbeed452b4e1c312bf974d0519d71d",
+      "upstreamValidatorRevision": "152c37a46c8cb71fbe1363772f1ccffe6e91c78b"
+    },
     "nix": {
       "attempts": 1,
-      "cause": "The offline flake check with local direct-input overrides could not resolve the nested aeco-toolchain revision (HTTP 404).",
+      "cause": "The local recursive aeco-toolchain override was unavailable after its archive request returned HTTP 404. The command was issued before the failed preparation was handled and stopped at the missing path; evaluation and build were not reached. No retry.",
+      "exitCode": 1,
       "status": "not-proven"
     },
     "packaging": {
       "entryPoint": "pyproject source metadata",
       "wheel": "not-proven"
     },
+    "publicRepin": {
+      "checkedRevisions": 12,
+      "converterFilesUnchanged": 7,
+      "directPins": 12,
+      "evidence": "docs/public-repin.json",
+      "findingsUnchanged": true,
+      "publicTagsNotProven": 4,
+      "publicTagsVerified": 8,
+      "rangesWidened": 0,
+      "recursivePublicTagsVerified": 2,
+      "resultRepublished": true,
+      "sampledPngsChanged": 2,
+      "sourceLayersUnchanged": true,
+      "usdFilesByteIdentical": 10
+    },
     "python": {
       "ifcopenshell": "0.8.5",
       "usd-core": "26.8"
     },
+    "releaseTrain": "aeco-0.8.0",
     "render": {
       "renderer": "Embree",
       "source": "Matching native OpenUSD executable; family gate interpreter remains usd-core 26.8.",
       "usd": "0.26.11"
     },
     "usdAeco": {
-      "revision": "11000b2ca7a2f560bfcd1ffd439bf9b71a5f5c18",
-      "source": "Exact tagged source; local release archive used when shared checkout advanced.",
-      "version": "0.9.2"
+      "revision": "683adc3280254bc71b396a9c64a359cc708788f4",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.9.5"
     },
     "usdAecoAxis": {
-      "revision": "a559e6a200703f852efb1d15ffa69a6453b863c0",
-      "source": "Exact tagged source; local release archive used when shared checkout advanced.",
-      "version": "0.1.1"
+      "revision": "ecff1d98bcc45c22fcceefd453374671900793ae",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.1.5"
     },
     "usdAecoBuildUp": {
-      "revision": "0852913e366f765096505260184c15cb4bbffceb",
-      "source": "Exact release archive.",
-      "version": "0.2.0"
+      "revision": "99ac95080bf4d1403d410b356c4645c3f251aa40",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.2.5"
     },
     "usdAecoCctv": {
-      "revision": "d38045082b04028152dfd0aec0869fd5c4037451",
-      "source": "Exact release archive.",
-      "version": "0.5.0"
+      "revision": "567eb9cbdec045a6581c3f5863ac11a22f46e153",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.5.6"
     },
     "usdAecoPipe": {
-      "revision": "f48a764dacc99c4467b426f3c1bb691c5c783952",
-      "source": "Exact release archive.",
-      "version": "0.1.2"
+      "revision": "12179dfb86e93ec605dd8548d19c50d5671029ee",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.2.5"
     },
     "usdAecoSync": {
-      "revision": "ee38f402a08b2c5f784bcc4cd5f826233216d091",
-      "source": "Exact release archive.",
-      "version": "0.5.1"
+      "revision": "2f13dffb5e29076787e6e9b81a701ce2a0ab7e8a",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.5.5"
     },
     "usdAecoWall": {
-      "revision": "09b2993e11d07b96a2492e75c49448153524c8b2",
-      "source": "Exact release archive.",
-      "version": "0.1.2"
+      "revision": "ce4b2fa54bb4c85d495237a93e3c883df9c1e1d6",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.2.5"
+    },
+    "usdSolid": {
+      "revision": "5792a6f56de3a7f881a73ba11b3635871cd2dc4e",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.1.5"
+    },
+    "usdSolidOcct": {
+      "revision": "0936e4e355b9ff5971ee5dbb4e8a47dcdea9e3fe",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.1.4"
     },
     "usdaeco-datacentre": {
-      "revision": "77d71f3f7372471fc56facc364e562302f1c4d60",
-      "source": "Exact tagged source; local release archive used when shared checkout advanced.",
-      "version": "0.4.2"
+      "revision": "00ac72998b1a92aa6c9e8422803c3350ca8dab37",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.4.9"
     },
     "usdaeco-scenarios": {
-      "revision": "c7c6870f36e50b67d08ca68c75f949a5b9921d03",
-      "source": "Exact release archive.",
-      "version": "0.3.7"
+      "revision": "83de1cdab2b1f26fe7d209d9fb28090447484666",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.8.0"
     },
     "usdaeco-toolchain": {
-      "revision": "362c3a392b37a5d27d876b2e55a3d00d0af798b5",
-      "source": "Exact tagged source; local release archive used when shared checkout advanced.",
-      "version": "0.3.2"
+      "revision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73",
+      "source": "Exact tagged source archive; public re-pin.",
+      "version": "0.3.10"
     }
   },
   "pins": {
     "axis": {
       "library": "usdAecoAxis",
-      "ref": "v0.1.1",
-      "repo": "usdaeco-axis"
+      "ref": "v0.1.5",
+      "repo": "usdaeco-axis",
+      "revision": "ecff1d98bcc45c22fcceefd453374671900793ae"
     },
     "buildup": {
       "library": "usdAecoBuildUp",
-      "ref": "v0.2.0",
-      "repo": "usdaeco-buildup"
+      "ref": "v0.2.5",
+      "repo": "usdaeco-buildup",
+      "revision": "99ac95080bf4d1403d410b356c4645c3f251aa40"
     },
     "cctv": {
       "library": "usdAecoCctv",
-      "ref": "v0.5.0",
-      "repo": "usdaeco-cctv"
+      "ref": "v0.5.6",
+      "repo": "usdaeco-cctv",
+      "revision": "567eb9cbdec045a6581c3f5863ac11a22f46e153"
     },
     "core": {
       "library": "usdAeco",
-      "ref": "v0.9.2",
-      "repo": "usdaeco-core"
+      "ref": "v0.9.5",
+      "repo": "usdaeco-core",
+      "revision": "683adc3280254bc71b396a9c64a359cc708788f4"
     },
     "datacentre": {
       "library": "usdaeco-datacentre",
-      "ref": "v0.4.2",
-      "repo": "usdaeco-datacentre"
+      "ref": "v0.4.9",
+      "repo": "usdaeco-datacentre",
+      "revision": "00ac72998b1a92aa6c9e8422803c3350ca8dab37"
     },
     "pipe": {
       "library": "usdAecoPipe",
-      "ref": "v0.1.2",
-      "repo": "usdaeco-pipe"
+      "ref": "v0.2.5",
+      "repo": "usdaeco-pipe",
+      "revision": "12179dfb86e93ec605dd8548d19c50d5671029ee"
     },
     "scenarios": {
       "library": "usdaeco-scenarios",
-      "ref": "v0.3.7",
-      "repo": "usdaeco-scenarios"
+      "ref": "v0.8.0",
+      "repo": "usdaeco-scenarios",
+      "revision": "83de1cdab2b1f26fe7d209d9fb28090447484666"
     },
     "sync": {
       "library": "usdAecoSync",
-      "ref": "v0.5.1",
-      "repo": "usdaeco-sync"
+      "ref": "v0.5.5",
+      "repo": "usdaeco-sync",
+      "revision": "2f13dffb5e29076787e6e9b81a701ce2a0ab7e8a"
     },
     "toolchain": {
       "library": "usdaeco-toolchain",
-      "ref": "v0.3.2",
-      "repo": "usdaeco-toolchain"
+      "ref": "v0.3.10",
+      "repo": "usdaeco-toolchain",
+      "revision": "59d3da5ff5114089b54efaaae38efdd7fe1b8e73"
     },
     "usdSolid": {
       "library": "usdSolid",
-      "ref": "v0.1.0",
-      "repo": "usdSolid"
+      "ref": "v0.1.5",
+      "repo": "usdSolid",
+      "revision": "5792a6f56de3a7f881a73ba11b3635871cd2dc4e"
     },
     "usdSolidOcct": {
       "library": "usdSolidOcct",
-      "ref": "v0.1.0",
-      "repo": "usdSolidOcct"
+      "ref": "v0.1.4",
+      "repo": "usdSolidOcct",
+      "revision": "0936e4e355b9ff5971ee5dbb4e8a47dcdea9e3fe"
     },
     "wall": {
       "library": "usdAecoWall",
-      "ref": "v0.1.2",
-      "repo": "usdaeco-wall"
+      "ref": "v0.2.5",
+      "repo": "usdaeco-wall",
+      "revision": "ce4b2fa54bb4c85d495237a93e3c883df9c1e1d6"
     }
   },
   "publication": {
-    "bytes": 6445643,
+    "bytes": 6445651,
     "files": [
       {
         "bytes": 837,
         "path": "result/README.md",
-        "sha256": "820c173b7df4d918fdbb2e0cd5347ef152d6c49c8586d11fe9b612d1c4b94093"
+        "sha256": "89283fb1a0721f89758bda0ece6fb3658eb7c0cd92191131148deceaef5b035b"
       },
       {
         "bytes": 1738843,
@@ -652,18 +718,18 @@
         "sha256": "5a99d9c63b6abf20393876e72a4ca8f5de1a9b5fb0bf2e5bf2eaa52ed2ebefa8"
       },
       {
-        "bytes": 72626,
+        "bytes": 72634,
         "path": "result/vanilla.png",
-        "sha256": "14647383a2af4dd078947ca2dbc6552bd0283627f2b43f7acd35bf219046e807"
+        "sha256": "cdfa791cd4a7f54721c4e744f0c11efc3c8857007290845c0d7b7c8cda3951c7"
       }
     ],
     "normalization": "sdf-usda-v1",
     "prim_count": 13404,
     "vanilla": {
-      "bytes": 72626,
+      "bytes": 72634,
       "height": 800,
       "path": "result/vanilla.png",
-      "sha256": "14647383a2af4dd078947ca2dbc6552bd0283627f2b43f7acd35bf219046e807",
+      "sha256": "cdfa791cd4a7f54721c4e744f0c11efc3c8857007290845c0d7b7c8cda3951c7",
       "width": 1280
     }
   },
@@ -700,8 +766,8 @@
   },
   "renders": [
     {
-      "foregroundFraction": 0.152349609375,
-      "foregroundPixels": 156006,
+      "foregroundFraction": 0.1523564453125,
+      "foregroundPixels": 156013,
       "horizontalRange": 1.0,
       "path": "renders/edited_corner.png",
       "threshold8bit": 20,
@@ -795,5 +861,5 @@
     "volumeRelativeTolerance": 0.01
   },
   "skipped": 0,
-  "version": "0.2.0"
+  "version": "0.2.3"
 }

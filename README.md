@@ -76,8 +76,8 @@ model.ifc -o model.usda`. Keep geometry extraction in a fresh process before
 importing USD. With the exact runtime configured, source checks select its
 matching stock usdrecord automatically; `USDRECORD` can override that choice.
 
-Use the tagged sources in `dependencies.json`: core v0.9.2, axis v0.1.2,
-sync v0.5.2, toolchain v0.3.8 and datacentre v0.4.5. Select a frozen release
+Use the tagged sources in `dependencies.json`: core v0.9.5, axis v0.1.5,
+sync v0.5.5, toolchain v0.3.10 and datacentre v0.4.9. Select a frozen release
 checkout with the environment variables above if a shared checkout advances.
 
 The optional exact command uses a separate native Python/USD ABI:
@@ -93,7 +93,8 @@ The default converter is unchanged. Exact export reports every selected
 meshable product by IFC class, including failures, and exits nonzero if any
 body fails. See [the exact route](docs/exact.md) for scope, ABI and fidelity.
 
-Flakes use public versioned inputs. A local mirror can use
+Flakes name versioned GitHub inputs. Anonymous access to four tagged inputs
+remains unproven in this release; see [acceptance](docs/acceptance.md). A local mirror can use
 `--override-input <name> path:../<repo>` for every direct input; the toolchain
 also documents nested overrides. Nix input resolution and wheel construction
 remain unproven in the measured environment; see [acceptance](docs/acceptance.md).
@@ -103,7 +104,7 @@ remain unproven in the measured environment; see [acceptance](docs/acceptance.md
 Requires `usdAeco >=0.9,<1.0`, `usdAecoAxis >=0.1,<0.2` and
 `usdAecoSync >=0.5,<0.6`. Exact tested
 references and source observations are in [dependencies.json](dependencies.json).
-This integration uses datacentre v0.4.5, cctv v0.5.2 and buildup v0.2.1.
+This integration uses datacentre v0.4.9, cctv v0.5.6 and buildup v0.2.5.
 Its 21 synthetic cases come from the v0.3.7 family gate. The [family board](https://github.com/criad-com/usdaeco-board)
 reads these pins and the example manifest.
 
@@ -117,7 +118,7 @@ S01–S05 and S20–S29 apply; S06–S19 are inapplicable because this package h
 
 ## Status
 
-Version 0.2.2: **101 checks, 0 failed, 0 not run; 134 tests passed**.
+Version 0.2.3: **101 checks, 0 failed, 0 not run; 134 tests passed**.
 The optional exact command preserves the existing
 converter, native cases and final-reimport publication. The base census is
 2,954 elements, 33 spaces and zero unparented elements. Exact export also

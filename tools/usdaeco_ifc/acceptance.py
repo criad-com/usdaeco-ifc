@@ -11,7 +11,7 @@ from .runtime import python
 def generator_root():
     root = Path(os.environ.get('AECO_DATACENTRE_ROOT', Path(__file__).resolve().parents[3] / 'usdaeco-datacentre'))
     if not (root / 'src/dcbuild').is_dir():
-        raise FileNotFoundError('Set AECO_DATACENTRE_ROOT to datacentre v0.4.2')
+        raise FileNotFoundError('Set AECO_DATACENTRE_ROOT to the pinned datacentre source')
     return root
 
 
