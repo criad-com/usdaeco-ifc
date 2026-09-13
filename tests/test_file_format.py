@@ -24,16 +24,48 @@ def test_file_format_descriptor():
     assert info['supportsWriting'] is info['supportsEditing'] is False
 
 
+@pytest.mark.parametrize('spine', ['def', 'over'])
+def test_document_references_match_saved_twin(tmp_path, format_env, file_format_evidence, spine):
+    from document_fixtures import (FOREIGN_PORT, FOREIGN_SPACE, LOCAL_PORTS, SYSTEM,
+                                   associate, delivery)
+    model, ports, system, _ = delivery()
+    associate(model, [system], 'aeco:serves', FOREIGN_SPACE)
+    associate(model, ports, 'ignored', 'not a path')
+    associate(model, ports, 'aeco:connectedPorts', 'relative/Port')
+    source = tmp_path / 'delivery.ifc'
+    model.write(str(source))
+    del model, ports, system
+    twin = source.with_suffix('.usda')
+    args = ['-m', 'usdaeco_ifc.convert', str(source), '-o', str(twin)]
+    if spine == 'over':
+        args.append('--overlay-spine')
+    # Wait for the writer process to exit, closing all saved layer handles.
+    conversion = python(args, check=True, capture_output=True, text=True, timeout=180)
+    assert 'Description must be an absolute USD prim path' in conversion.stderr
+    actual = snapshot(str(source) + ':SDF_FORMAT_ARGS:spine=' + spine, format_env)
+    reference = snapshot(twin, environment(tmp_path / 'vanilla-cache', plugins=False))
+    for key in ('census', 'transforms', 'relationships'):
+        assert actual[key] == reference[key]
+    assert actual['census']['ports'] == 2
+    assert actual['relationships'][LOCAL_PORTS[0]]['aeco:connectedPorts'] == [LOCAL_PORTS[1], FOREIGN_PORT]
+    assert actual['relationships'][LOCAL_PORTS[1]]['aeco:connectedPorts'] == [LOCAL_PORTS[0]]
+    assert actual['relationships'][SYSTEM]['aeco:serves'] == ['/Demo/Building', FOREIGN_SPACE]
+    assert actual['unresolvedRelationshipCounts'] == {'aeco:connectedPorts': 1, 'aeco:serves': 1}
+    file_format_evidence['documentReferences' + spine.title()] = actual['relationshipCounts']
+
+
 @pytest.fixture(scope='module')
-def format_case():
+def format_runtime():
     if not os.environ.get('USD_DEV'):
         pytest.skip('not proven: set USD_DEV and build usdIfc for native file-format tests')
     resources = Path(os.environ.get('USD_IFC_PLUGIN_DIR', ROOT / 'out/plugins/usdIfc/resources'))
     assert (resources / 'plugInfo.json').is_file(), 'Run build.sh before native tests'
-    work = ROOT / '.work/file-format-tests'
-    if work.exists():
-        shutil.rmtree(work)
-    work.mkdir(parents=True)
+
+
+@pytest.fixture(scope='module')
+def format_inputs(tmp_path_factory, format_runtime):
+    # Prepare immutable inputs once; every test copies them before opening USD.
+    work = tmp_path_factory.mktemp('file-format-inputs')
     source = os.environ.get('AECO_CONTRACT_IFC')
     if not source:
         print('== stage: regenerate roundtrip IFC fixture', flush=True)
@@ -46,19 +78,42 @@ def format_case():
     print('== stage: convert IFC twin and open native format', flush=True)
     python(['-m', 'usdaeco_ifc.convert', str(source_copy), '-o', str(twin)],
            check=True, capture_output=True, text=True, timeout=180)
-    env = environment(work / 'cache')
+    return delivered
+
+
+@pytest.fixture
+def file_format_evidence(record_property):
+    evidence = {}
+    yield evidence
+    record_property('fileFormat', json.dumps(evidence))
+
+
+@pytest.fixture
+def format_env(tmp_path, format_runtime):
+    return environment(tmp_path / 'cache')
+
+
+@pytest.fixture
+def format_case(tmp_path, format_inputs, format_env, file_format_evidence):
+    work = tmp_path
+    delivered = work / "delivery with ' spaces"
+    shutil.copytree(format_inputs, delivered)
+    source_copy = delivered / "model ' quoted.ifc"
+    twin = source_copy.with_suffix('.usda')
+    env = format_env
     first = snapshot(source_copy, env)
     reference = snapshot(twin, env)
-    case = dict(work=work, source=source_copy, twin=twin, env=env, first=first,
-                reference=reference, evidence={'census': first['census'], 'flattenedHash': first['hash']})
-    yield case
-    (work / 'report.json').write_text(json.dumps(case['evidence'], indent=2) + '\n')
+    file_format_evidence.update(census=first['census'], flattenedHash=first['hash'],
+                                relationshipCounts=first['relationshipCounts'])
+    return dict(work=work, source=source_copy, twin=twin, env=env, first=first,
+                reference=reference, evidence=file_format_evidence)
 
 
 def test_ifc_stage_matches_converter_census_and_world_transforms(format_case):
     case = format_case
     assert case['first']['census'] == case['reference']['census']
     assert case['first']['transforms'] == case['reference']['transforms']
+    assert case['first']['relationships'] == case['reference']['relationships']
     assert all(case['first']['census'][k] > 0 for k in ('spatial','elements','types','systems','ports','meshes'))
     assert case['first']['sublayers'] == []
     case['evidence']['worldTransformsCompared'] = len(case['first']['transforms'])
@@ -101,6 +156,7 @@ actual = snapshot(sys.argv[1])
 reference = snapshot(sys.argv[2])
 assert actual['census'] == reference['census']
 assert actual['transforms'] == reference['transforms']
+assert actual['relationships'] == reference['relationships']
 defined = snapshot(sys.argv[4])
 for key in ('elements', 'types', 'systems', 'ports'):
     assert actual['census'][key] == defined['census'][key], key
@@ -245,15 +301,61 @@ def test_usda_twin_opens_without_any_plugins(format_case):
     assert actual['transforms'] == case['reference']['transforms']
 
 
-def test_connected_datacentre_matches_usd_only(format_case):
-    case = format_case
+def test_connected_datacentre_matches_usd_only(tmp_path, format_env, file_format_evidence):
     root = os.environ.get('AECO_DATACENTRE_ROOT')
     connected = Path(root) / 'dist/full/dc.connected.usda' if root else None
-    if connected is None or not connected.is_file():
-        case['evidence']['fullFacility'] = 'not proven: dist/full/dc.connected.usda unavailable'
-        pytest.skip(case['evidence']['fullFacility'])
-    actual = snapshot(connected, case['env'])
-    twin = snapshot(connected.with_name('dc.usda'), environment(case['work'] / 'vanilla-cache', plugins=False))
+    version = json.loads((Path(root) / 'library.json').read_text())['version'] if root else '0.0.0'
+    if (connected is None or not connected.is_file()
+            or tuple(map(int, version.split('-')[0].split('.'))) < (0, 5, 1)):
+        file_format_evidence['fullFacility'] = 'not proven: dist/full from datacentre >=0.5.1 unavailable'
+        pytest.skip(file_format_evidence['fullFacility'])
+    vanilla = environment(tmp_path / 'vanilla-cache', plugins=False)
+    manifest = json.loads(connected.with_name('dc.manifest.json').read_text())
+    controlled = manifest['tessellationControlled']
+    assert len(controlled) == 2
+    assert {row['path'].split('/')[-2] for row in controlled} == {'pipe_clash_near', 'pipe_clash_tangent'}
+    assert all(row['delivery'] == 'cooling' for row in controlled)
+
+    def compare_meshes(actual, twin, exclusions):
+        assert actual['meshes'].keys() == twin['meshes'].keys()
+        excluded = {row['path'] for row in exclusions}
+        assert excluded <= actual['meshes'].keys()
+        for path in actual['meshes'].keys() - excluded:
+            assert actual['meshes'][path] == twin['meshes'][path], path
+        for row in exclusions:
+            assert twin['meshes'][row['path']]['points'] == row['twinPointCount']
+        return len(actual['meshes']) - len(excluded)
+
+    packages = {}
+    deliveries = sorted(connected.parent.glob('*.ifc'))
+    assert len(deliveries) == 9, 'Expected shared spine and eight discipline deliveries'
+    for source in deliveries:
+        args = '' if source.stem == 'shared' else ':SDF_FORMAT_ARGS:spine=over'
+        actual = snapshot(str(source) + args, format_env, meshes=True)
+        twin = snapshot(source.with_suffix('.usda'), vanilla, meshes=True)
+        assert actual['census'] == twin['census'], source.name
+        assert actual['transforms'] == twin['transforms'], source.name
+        assert actual['relationships'] == twin['relationships'], source.name
+        packages[source.stem] = dict(census=actual['census'],
+                                    worldTransformsCompared=len(actual['transforms']),
+                                    meshesCompared=compare_meshes(actual, twin, [row for row in controlled
+                                                                             if row['delivery'] == source.stem]),
+                                    relationshipCounts=actual['relationshipCounts'],
+                                    unresolvedRelationshipCounts=actual['unresolvedRelationshipCounts'])
+    cross_package_targets = sum(p['unresolvedRelationshipCounts']['aeco:connectedPorts']
+                                for p in packages.values())
+    assert cross_package_targets == 1008
+    actual = snapshot(connected, format_env, meshes=True)
+    twin = snapshot(connected.with_name('dc.usda'), vanilla, meshes=True)
     assert actual['census'] == twin['census']
     assert actual['transforms'] == twin['transforms']
-    case['evidence']['fullFacility'] = actual['census']
+    assert actual['relationships'] == twin['relationships']
+    assert actual['relationshipCounts']['aeco:serves'] == 9
+    file_format_evidence['fullFacility'] = dict(packages=packages, census=actual['census'],
+                                               crossPackagePortTargets=cross_package_targets,
+                                               worldTransformsCompared=len(actual['transforms']),
+                                               meshesCompared=compare_meshes(actual, twin, controlled),
+                                               meshExclusions=[dict(row,
+                                                   readerPointCount=actual['meshes'][row['path']]['points'])
+                                                   for row in controlled],
+                                               relationshipCounts=actual['relationshipCounts'])

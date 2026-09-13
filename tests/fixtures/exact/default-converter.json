@@ -1,7 +1,7 @@
 {
   "tools/usdaeco_ifc/convert/__init__.py": "85284ba0826819d0ea201d92f41004c48c3514daaaa39dcb943b7009a4f7a3cd",
   "tools/usdaeco_ifc/convert/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
-  "tools/usdaeco_ifc/convert/author.py": "b838cf3209618179af688074196383e7cd43c910e1f374f5bc4018cb6fb9378d",
+  "tools/usdaeco_ifc/convert/author.py": "c4d39026e23d218b6a8e1aa664ef3a60318a35e21b2c3d803ba787904057b47b",
   "tools/usdaeco_ifc/convert/cli.py": "5b6d6545c7856e7b3b1282064a5c6cbf447bab4f065cadd6ffe53dae458a8f27",
   "tools/usdaeco_ifc/convert/geometry.py": "2920e904242df3a6cf06ba6867aec74c7a076bee1ce39c5723105cbedd508c75",
   "tools/usdaeco_ifc/convert/mapping.py": "54d93aaae770bf213f39a7b7349a15f35165190abeb1eab84ce007dcc97300b0",

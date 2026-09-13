@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.3.1
+
+- Translate federated `IfcDocumentReference` associations into local
+  `aeco:connectedPorts` and `aeco:serves` relationship targets in both spine
+  modes. Preserve local links and foreign ownership; warn on malformed paths.
+- Bump the converter version to invalidate cached IFC materializations.
+- Give native file-format tests private temporary deliveries and caches;
+  carry acceptance evidence through per-test JUnit records.
+- Compare relationship targets as well as census and transforms, including
+  every full-facility delivery when datacentre >=0.5.1 is available.
+
+- Verify 104 checks, 0 failed, 1 not run; 175 tests passed, 1 skipped.
+  Base parity includes 6,048 connected-port targets and 9 serves targets.
+  All 12 published roundtrip files remain byte-identical. Record the full-gate
+  timeout retry and unresolved Nix input.
+- Verify the previously skipped full-facility case separately against v0.5.1:
+  all nine deliveries match, including 1,008 cross-package port targets and
+  9 serves targets. Compare 12,350 world transforms and 3,048 mesh point/topology
+  records, excluding exactly the two disclosed controlled meshes.
+
 ## 0.3.0
 
 - Add the read-only `usdIfc` Sdf file-format plugin, content-addressed cache,

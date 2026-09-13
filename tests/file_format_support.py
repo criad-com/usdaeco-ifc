@@ -26,6 +26,7 @@ def environment(cache, *, plugins=True):
     env["USDAECO_IFC_PYTHON"] = str(ROOT / "tools/ifc-python")
     env["USDAECO_IFC_SOURCE_PYTHON"] = sys.executable
     env["USDAECO_IFC_CACHE"] = str(cache)
+    env["XDG_CACHE_HOME"] = str(Path(cache).parent / 'xdg')
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     # Only the format plugin in the consumer; schemas are tested via fallbacks.
     if plugins:
@@ -46,7 +47,7 @@ def native(code, *args, env, check=True):
 SNAPSHOT = '''
 import hashlib, json
 from pxr import Usd, UsdGeom, Sdf
-def snapshot(path):
+def snapshot(path, *, meshes=False):
     stage = Usd.Stage.Open(path)
     assert stage and not stage.GetCompositionErrors()
     prims = list(stage.TraverseAll())
@@ -63,13 +64,37 @@ def snapshot(path):
     transforms = {str(p.GetPath()): [v for row in cache.GetLocalToWorldTransform(p) for v in row]
                   for p in prims if UsdGeom.Xformable(p)}
     flat = stage.Flatten(False)
-    return dict(census=counts, transforms=transforms,
+    relationships = {str(p.GetPath()): {name: list(map(str, p.GetRelationship(name).GetTargets()))
+        for name in ('aeco:connectedPorts', 'aeco:serves') if p.GetRelationship(name).HasAuthoredTargets()}
+        for p in prims if any(p.GetRelationship(name).HasAuthoredTargets()
+                             for name in ('aeco:connectedPorts', 'aeco:serves'))}
+    relationship_counts = {name: sum(len(rels.get(name, [])) for rels in relationships.values())
+                           for name in ('aeco:connectedPorts', 'aeco:serves')}
+    unresolved = {name: sum(not stage.GetPrimAtPath(target) for rels in relationships.values()
+                           for target in rels.get(name, [])) for name in relationship_counts}
+    result = dict(census=counts, transforms=transforms,
+                relationships=relationships, relationshipCounts=relationship_counts,
+                unresolvedRelationshipCounts=unresolved,
                 hash=hashlib.sha256(flat.ExportToString().encode()).hexdigest(),
                 sublayers=list(stage.GetRootLayer().subLayerPaths),
                 spatialPaths=[str(p.GetPath()) for p in prims if p.GetTypeName() in
                     ('AecoSite','AecoFacility','AecoFacilityPart','AecoLevel','AecoSpace')])
+    if meshes:
+        result['meshes'] = {}
+        for prim in prims:
+            if not prim.IsA(UsdGeom.Mesh):
+                continue
+            mesh = UsdGeom.Mesh(prim)
+            points = [list(p) for p in mesh.GetPointsAttr().Get()]
+            counts = list(mesh.GetFaceVertexCountsAttr().Get())
+            indices = list(mesh.GetFaceVertexIndicesAttr().Get())
+            digest = hashlib.sha256(json.dumps([points, counts, indices]).encode()).hexdigest()
+            result['meshes'][str(prim.GetPath())] = dict(points=len(points), faces=len(counts),
+                                                       indices=len(indices), sha256=digest)
+    return result
 '''
 
 
-def snapshot(path, env):
-    return json.loads(native(SNAPSHOT + "\nprint(json.dumps(snapshot(sys.argv[1])))", path, env=env).stdout)
+def snapshot(path, env, *, meshes=False):
+    code = SNAPSHOT + "\nprint(json.dumps(snapshot(sys.argv[1], meshes=" + repr(meshes) + ")))"
+    return json.loads(native(code, path, env=env).stdout)

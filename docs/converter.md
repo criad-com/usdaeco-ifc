@@ -129,6 +129,27 @@ Each discipline retains its type catalog and occurrence inheritance; space
 extents belong to the shared package. The [IFC file format](file-format.md)
 passes this flag through as `spine=over` and preserves the resulting specs.
 
+**Federated relationships (v0.3.1).** An `IfcRelAssociatesDocument` can attach
+an `IfcDocumentReference` to a local distribution port or system. The recognized
+names are `aeco:connectedPorts` on ports and `aeco:serves` on systems. The
+reference's `Description` supplies the absolute USD prim path to append to that
+relationship. `Location` identifies the target package IFC basename and
+`Identification` its target GlobalId; neither is resolved or used to create
+another identity. The converter opens no other package and authors no foreign
+prim, including no placeholder `over`. Reciprocal port targets must be supplied
+by the package that owns each endpoint.
+
+Ordinary `IfcRelConnectsPorts` still authors both local endpoints, and
+`IfcRelServicesBuildings` still resolves local served spatial prims. Document
+targets are appended without duplicating or reordering existing targets. Unknown
+document names, other document entity types and incompatible owners are ignored.
+A missing, relative, property, variant-selection or otherwise malformed
+`Description` produces a converter warning and is skipped; conversion succeeds.
+Both ordinary and `--overlay-spine` output use this mapping, with or without
+geometry. The existing `portLinks` counter continues to count resolved same-file
+`IfcRelConnectsPorts` connections; relationship target counts include the extra
+document opinions and are reported separately in file-format acceptance.
+
 **Kind health.** The converter never invents or translates a kind: the
 IFC class is the classification code. What it reports is the number of
 `IfcBuildingElementProxy` elements — IFC's own "kind unknown" — and the

@@ -136,7 +136,7 @@ s=Usd.Stage.Open(sys.argv[1]); assert s and not s.GetCompositionErrors() and s.F
         junit = temporary / 'pytest.xml'
         tests = python(['-m','pytest','-q','--tb=short','-rs','--junitxml',str(junit)],
                        cwd=ROOT,env=environment,capture_output=True,text=True,
-                       timeout=480 if os.environ.get('USD_DEV') else 240)
+                       timeout=600 if os.environ.get('USD_DEV') else 240)
         print(tests.stdout)
         if tests.returncode: print(tests.stderr)
         report.check('pytest',tests.returncode == 0)
@@ -167,9 +167,11 @@ s=Usd.Stage.Open(sys.argv[1]); assert s and not s.GetCompositionErrors() and s.F
             report.check('usdIfc native contract tests', len(native_cases) >= 12 and all(
                 not any(case.find(tag) is not None for tag in ('failure','error','skipped')) for case in native_cases),
                 str(len(native_cases)) + ' native tests')
-            result_path = ROOT/'.work/file-format-tests/report.json'
-            if result_path.is_file():
-                evidence['fileFormat'] = json.loads(result_path.read_text())
+            evidence['fileFormat'] = {}
+            for case in test_cases:
+                for prop in case.findall('./properties/property'):
+                    if prop.get('name') == 'fileFormat':
+                        evidence['fileFormat'].update(json.loads(prop.get('value')))
             full = evidence.get('fileFormat',{}).get('fullFacility','not proven: native tests did not report')
             if isinstance(full,dict):
                 report.check('connected full facility twin parity',True,json.dumps(full,sort_keys=True))

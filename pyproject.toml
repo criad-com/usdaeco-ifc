@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "usdaeco-ifc"
-version = "0.3.0"
+version = "0.3.1"
 description = "IFC conversion and native sync host"
 requires-python = ">=3.11"
 dependencies = ["usdaeco-sync>=0.5,<0.6", "ifcopenshell==0.8.5", "numpy>=1.26"]
@@ -29,3 +29,4 @@ usdaeco_ifc = ["native/*.cpp"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["tools", "tests"]
+junit_family = "xunit1"

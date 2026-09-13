@@ -1,11 +1,87 @@
 # IFC integration acceptance
 
+## Federated document references (v0.3.1)
+
+The converter translates recognized document associations into relationships on
+local ports and systems. Foreign prims remain unauthored. Both spine modes
+retain local links, ignore unknown document names and warn on malformed paths.
+The converter version invalidates older IFC cache entries. See the
+[file-format guide](file-format.md) and [measured receipt](file-format-acceptance.json).
+
+| Acceptance item | Observed result |
+|---|---|
+| Pinned full gate | 104 checks, 0 failed, 1 conditional case not run; that case passed separately below |
+| Regression tests | 175 passed, 1 skipped with pinned fixtures; the skipped case subsequently passed with full v0.5.1 (176 unique passing cases) |
+| Synthetic converter cases | 26 passed, including IFC4/IFC4X3, both spine modes, symmetry, serves, duplicate targets and malformed paths |
+| Native file format | 14 regular contracts plus descriptor passed; full-facility case passed separately in 53.77 seconds |
+| Overlapping pytest processes | 2 formerly flaky tests passed during a separate native suite: overlay geometry enabled and XDG cache selection |
+| Synthetic native relationships | Both spine modes: 3 connected-port targets and 2 serves targets, with one foreign target of each kind |
+| Base relationships | 3,024 same-file connections; 6,048 authored port targets and 9 serves targets identical to the twin |
+| Base census and transforms | 12,266 prims; 6,212 ports; 12,191 identical world transforms; unchanged flattened hash |
+| Existing host cases | 21 synthetic, 9 camera and 9 datacentre cases passed |
+| Roundtrip | 2 elements, 14 driver values, zero differences; 13,404 plugin-free prims |
+| Published result | 12 files byte-identical; 6,445,651 bytes |
+| Exact export | 2,980/2,980 products, 32 IFC classes; no failures |
+| Full federation | All nine deliveries and connected root passed: 12,425 prims, 3,009 elements, 6,244 ports; 6,052 port targets including 1,008 crossings, plus 9 serves; 12,350 world transforms |
+| Full mesh comparison | 3,048 matching point/topology hashes; exactly two manifest-listed controlled meshes excluded (still included in census and transform comparisons) |
+
+### Deviations
+
+- One full-gate retry followed a 480-second regression timeout. Private cold
+  caches add conversion work, so the native pytest subprocess now has a
+  600-second budget. Assertions and the 240-second converter-only budget remain
+  unchanged. The complete regression run passed in 533.05 seconds. The
+  standalone native suite passed in 434.34 seconds; the two
+  overlapping regressions passed in 88.87 seconds.
+- The pinned full gate uses datacentre v0.4.9 to retain the released roundtrip
+  source. The conditional full-facility test was then run independently with
+  the v0.5.1 source snapshot recorded in the receipt, using private caches and
+  read-only inputs. It passed; full-facility parity is now proven.
+- Mesh comparison excludes exactly the manifest's `pipe_clash_near/Geom` and
+  `pipe_clash_tangent/Geom` paths. The IFC reader produces 52 points for each;
+  their controlled twins have 10 and 24. All other mesh point/topology data,
+  and every prim's census, relationship targets and transforms, are compared.
+  The receipt records both complete paths. A final default/overlay document
+  smoke run passed all 28 selected cases after adding the mesh probe.
+- The single Nix build attempt requested offline resolution, an external
+  registry, no substitutes and no remote builders. The published CCTV v0.5.6
+  lookup returned HTTP 404; the registry did not resolve that direct input.
+  No second attempt was made and no lockfile is committed. Nix packaging and
+  Linux compilation remain **not proven**; CMake/native execution passed.
+- Checks use released core/axis source resources. Exact verification reuses an
+  existing usdSolidOcct v0.1.5 runtime with usdSolid v0.1.4; no sibling dependency
+  was rebuilt. These are observations, not changes to the declared pins.
+- The exact route's converter source-hash baseline is refreshed for the changed
+  authoring file. Published base authored content and the roundtrip result
+  remain independently checked and unchanged.
+
+
+### Full-facility delivery counts
+
+Each IFC read matches its committed twin. Shared defines the spatial spine;
+all other reads use `spine=over`. Serves targets are native IFC service links
+into the shared spatial structure; synthetic cases separately prove document
+references named `aeco:serves`.
+
+| Delivery | Port targets | Cross-package port targets | Serves | World transforms | Meshes compared |
+|---|---:|---:|---:|---:|---:|
+| arch | 0 | 0 | 0 | 334 | 167 |
+| cooling | 1712 | 184 | 3 | 3192 | 735 |
+| electrical | 2860 | 344 | 2 | 5368 | 1254 |
+| fitout | 4 | 0 | 0 | 72 | 23 |
+| it | 1476 | 480 | 3 | 2982 | 671 |
+| security | 0 | 0 | 1 | 140 | 70 |
+| shared | 0 | 0 | 0 | 88 | 41 |
+| site | 0 | 0 | 0 | 6 | 3 |
+| structure | 0 | 0 | 0 | 168 | 84 |
+| Total | 6052 | 1008 | 9 | 12350 | 3048 |
+
 ## IFC file format (v0.3.0)
 
 `usdIfc` reads IFC through the existing converter, caches a flattened crate,
 and transfers one layer into the consuming USD runtime. The
 [file-format guide](file-format.md) documents build, interpreter, cache and
-composition behavior. Measurements are recorded in
+composition behavior. Current measurements are recorded in
 [the file-format receipt](file-format-acceptance.json).
 
 | Acceptance item | Observed result |

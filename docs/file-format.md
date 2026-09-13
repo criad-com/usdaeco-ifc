@@ -66,10 +66,13 @@ The optional package is `nix build .#usdIfc --no-write-lock-file`. Inputs remain
 at public released tags. External source overrides follow the toolchain's
 registry instructions; keep deployment configuration outside this checkout.
 The package checks that its interpreter can import IfcOpenShell before building.
-The measured attempt failed there because the toolchain Python environment
-omitted IfcOpenShell on the tested platform. No second Nix attempt was made;
-packaged execution and Linux compilation are **not proven**. The CMake path
-uses an existing native USD build and the separate converter environment.
+The v0.3.1 attempt used an external registry override, disabled substitutes and
+remote builders, and requested offline resolution. It stopped at the published
+CCTV input with a GitHub lookup returning HTTP 404; the registry did not resolve
+that direct input. No second attempt was made. The earlier v0.3.0 attempt reached
+configuration but lacked IfcOpenShell. Packaged execution and Linux compilation
+remain **not proven**. The CMake path uses an existing native USD build and the
+separate converter environment.
 
 ## Arguments and composition
 
@@ -96,6 +99,31 @@ the corresponding USD-only root. Root metadata does not compose from sublayers.
 types, systems and ports retained. Spatial definitions and space extents come
 from the shared package. `geometry=0` emits no gprims. Unknown arguments and
 invalid values fail with a USD runtime error.
+
+## Federated document references
+
+The converter translates `IfcDocumentReference` entities associated through
+`IfcRelAssociatesDocument` with this delivery contract:
+
+| Field | Meaning |
+|---|---|
+| `Name` | `aeco:connectedPorts` for a local port, or `aeco:serves` for a local system |
+| `Location` | target package IFC basename, for example `cooling.ifc` |
+| `Identification` | target port or spatial object's IFC GlobalId |
+| `Description` | target absolute USD prim path |
+
+Only the local owner receives the relationship target from `Description`.
+There is no foreign prim definition or placeholder, no package lookup, and no
+reciprocal opinion authored on another package's port. Compose both deliveries
+to resolve reciprocal port links. Same-file port links remain symmetric, and
+local system service targets remain intact. Unknown names are ignored;
+malformed descriptions warn and are skipped by the converter. See the
+[converter mapping](converter.md) for validation and ownership details.
+
+This applies to default reads and `spine=over`, with either geometry argument.
+The plugin uses the updated converter unchanged. Converter version `0.3.1`
+selects new cache entries, so materializations made before document translation
+are not reused.
 
 ## Cache and read behavior
 
@@ -151,13 +179,45 @@ env -u PYTHONPATH "$PYTHON" check.py
 ```
 
 With `USD_DEV` set, tests require the build products and launch that USD's
-matching Python. Their IFC is generated in `.work/` through the roundtrip's
-`build_base` helper. The full gate reuses its freshly generated IFC. Native
+matching Python. A module-scoped temporary fixture prepares immutable base
+IFC and twin inputs through the roundtrip's `build_base` helper. Each test copies
+those inputs into its own fresh temporary directory and sets its own
+`USDAECO_IFC_CACHE`. The XDG-default test removes that override only while using
+its private `XDG_CACHE_HOME`; no test reads the user cache. Writers finish and
+close saved layers before native reader subprocesses start. The full gate can
+reuse its freshly generated IFC as an input. Native
 probes register only `usdIfc`; the twin probe starts without any family plugins.
-They compare census and world transforms, composition, spatial overs, no-geometry
+They compare relationship targets, census and world transforms, composition, spatial overs, no-geometry
 mode, deterministic fresh-process opens, cache hits and concurrent publication,
 error diagnostics and read-only behavior. Without `USD_DEV`, the optional native
 tests are explicitly skipped and the existing converter/host gate remains usable.
+Per-test JUnit properties carry acceptance evidence to `check.py`; there is no
+shared writable test report. Use `--junitxml=<report.xml>` to retain that evidence
+when running pytest separately. With native reads enabled, the gate allows
+600 seconds for regression tests because each test starts with a private cold
+cache; the converter-only budget remains 240 seconds.
 
-If `AECO_DATACENTRE_ROOT/dist/full/dc.connected.usda` exists, the suite also
-compares it with `dist/full/dc.usda`; otherwise that row is **not proven**.
+If `AECO_DATACENTRE_ROOT` identifies datacentre >=0.5.1 with `dist/full/`, the
+suite compares all nine IFC deliveries against their committed twins: each
+discipline uses `spine=over`, while shared defines the spatial spine. It compares
+every relationship target, census and world transform, counts the 1,008 port
+targets unresolved within their individual packages, and reports serves counts.
+It also compares `dc.connected.usda` with `dc.usda`. Mesh point/topology hashes
+are compared for every mesh except exactly the two `tessellationControlled`
+paths declared by the full manifest (near and tangent clash pipes). Those paths
+remain included in census, relationship and transform comparisons. Their reader
+and twin point counts are recorded. Without that fixture the
+full-facility row is **not proven**; synthetic parity does not replace it.
+
+The v0.3.1 acceptance ran the pinned gate with the released base source, then
+ran the conditional case separately with the full v0.5.1 source. To repeat that
+case, point `AECO_DATACENTRE_ROOT` at the full source and run:
+
+```sh
+env -u PYTHONPATH "$PYTHON" -m pytest -q tests/test_file_format.py::test_connected_datacentre_matches_usd_only --junitxml=out/full-facility.xml
+```
+
+All nine deliveries passed, including 1,008 cross-package port targets and nine
+serves targets. The connected root matches 12,350 world transforms and 3,048
+mesh point/topology records. See the [acceptance table](acceptance.md) for the
+per-package counts and the two controlled-tessellation exclusions.

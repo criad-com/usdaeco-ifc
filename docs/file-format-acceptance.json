@@ -1,20 +1,23 @@
 {
-  "version": "0.3.0",
+  "version": "0.3.1",
   "gate": {
     "checks": 104,
     "failed": 0,
     "notRun": 1,
     "pytest": {
-      "passed": 147,
-      "skipped": 1
-    }
+      "passed": 175,
+      "skipped": 1,
+      "seconds": 533.05,
+      "budgetSeconds": 600
+    },
+    "configuration": "Pinned base source; the full-fixture test was run separately with the full source."
   },
   "build": {
     "method": "CMake",
     "platform": "aarch64-darwin",
     "usd": "0.26.11-dev-g47154dc",
     "bytes": 125856,
-    "sha256": "62a68c0ac1142ccb80bb0df981f1b688f37a29eed0b104b626191d08f3b05674"
+    "sha256": "d9ea2a0a37b3b7cdbd9992706fba727d4e7360a5998b2edc675213efdc76084d"
   },
   "converterRuntime": {
     "usd-core": "26.8",
@@ -25,8 +28,38 @@
     "core": "0.9.5 source",
     "axis": "0.1.5 source"
   },
-  "nativeContractTests": 12,
+  "sourceObservations": {
+    "datacentre": "0.4.9",
+    "scenarios": "0.8.1",
+    "exactRuntime": {
+      "usdSolidOcct": "0.1.5",
+      "usdSolid": "0.1.4"
+    },
+    "datacentreFull": {
+      "version": "0.5.1",
+      "revision": "f88024c132e16f384c5164c039cb2d12b63068e8"
+    }
+  },
+  "nativeContractTests": 14,
+  "syntheticDocumentTests": 26,
+  "overlappingRegression": {
+    "passed": 2,
+    "seconds": 88.87,
+    "cases": [
+      "overlay geometry enabled",
+      "XDG cache selection"
+    ],
+    "overlappedWith": "standalone native file-format suite"
+  },
   "fileFormat": {
+    "documentReferencesDef": {
+      "aeco:connectedPorts": 3,
+      "aeco:serves": 2
+    },
+    "documentReferencesOver": {
+      "aeco:connectedPorts": 3,
+      "aeco:serves": 2
+    },
     "census": {
       "prims": 12266,
       "spatial": 37,
@@ -38,6 +71,10 @@
       "gprims": 2987
     },
     "flattenedHash": "463acc90f5b9016d0eaf39f45d47d9667b8062181113d9b57fe7efe9dd48dfaf",
+    "relationshipCounts": {
+      "aeco:connectedPorts": 6048,
+      "aeco:serves": 9
+    },
     "worldTransformsCompared": 12191,
     "overlay0": {
       "spatialOvers": 38,
@@ -68,7 +105,241 @@
       }
     },
     "cacheHit": true,
-    "fullFacility": "not proven: dist/full/dc.connected.usda unavailable"
+    "fullFacility": {
+      "packages": {
+        "arch": {
+          "census": {
+            "prims": 388,
+            "spatial": 0,
+            "elements": 167,
+            "types": 6,
+            "systems": 0,
+            "ports": 0,
+            "meshes": 167,
+            "gprims": 167
+          },
+          "worldTransformsCompared": 334,
+          "meshesCompared": 167,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          }
+        },
+        "cooling": {
+          "census": {
+            "prims": 3266,
+            "spatial": 0,
+            "elements": 737,
+            "types": 22,
+            "systems": 3,
+            "ports": 1718,
+            "meshes": 737,
+            "gprims": 737
+          },
+          "worldTransformsCompared": 3192,
+          "meshesCompared": 735,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 1712,
+            "aeco:serves": 3
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 184,
+            "aeco:serves": 0
+          }
+        },
+        "electrical": {
+          "census": {
+            "prims": 5440,
+            "spatial": 0,
+            "elements": 1254,
+            "types": 21,
+            "systems": 2,
+            "ports": 2860,
+            "meshes": 1254,
+            "gprims": 1254
+          },
+          "worldTransformsCompared": 5368,
+          "meshesCompared": 1254,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 2860,
+            "aeco:serves": 2
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 344,
+            "aeco:serves": 0
+          }
+        },
+        "fitout": {
+          "census": {
+            "prims": 119,
+            "spatial": 0,
+            "elements": 23,
+            "types": 0,
+            "systems": 0,
+            "ports": 26,
+            "meshes": 23,
+            "gprims": 23
+          },
+          "worldTransformsCompared": 72,
+          "meshesCompared": 23,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 4,
+            "aeco:serves": 0
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          }
+        },
+        "it": {
+          "census": {
+            "prims": 3042,
+            "spatial": 0,
+            "elements": 671,
+            "types": 8,
+            "systems": 3,
+            "ports": 1640,
+            "meshes": 671,
+            "gprims": 671
+          },
+          "worldTransformsCompared": 2982,
+          "meshesCompared": 671,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 1476,
+            "aeco:serves": 3
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 480,
+            "aeco:serves": 0
+          }
+        },
+        "security": {
+          "census": {
+            "prims": 195,
+            "spatial": 0,
+            "elements": 70,
+            "types": 5,
+            "systems": 1,
+            "ports": 0,
+            "meshes": 70,
+            "gprims": 70
+          },
+          "worldTransformsCompared": 140,
+          "meshesCompared": 70,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 1
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          }
+        },
+        "shared": {
+          "census": {
+            "prims": 88,
+            "spatial": 46,
+            "elements": 0,
+            "types": 0,
+            "systems": 0,
+            "ports": 0,
+            "meshes": 41,
+            "gprims": 41
+          },
+          "worldTransformsCompared": 88,
+          "meshesCompared": 41,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          }
+        },
+        "site": {
+          "census": {
+            "prims": 53,
+            "spatial": 0,
+            "elements": 3,
+            "types": 0,
+            "systems": 0,
+            "ports": 0,
+            "meshes": 3,
+            "gprims": 3
+          },
+          "worldTransformsCompared": 6,
+          "meshesCompared": 3,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          }
+        },
+        "structure": {
+          "census": {
+            "prims": 218,
+            "spatial": 0,
+            "elements": 84,
+            "types": 2,
+            "systems": 0,
+            "ports": 0,
+            "meshes": 84,
+            "gprims": 84
+          },
+          "worldTransformsCompared": 168,
+          "meshesCompared": 84,
+          "relationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          },
+          "unresolvedRelationshipCounts": {
+            "aeco:connectedPorts": 0,
+            "aeco:serves": 0
+          }
+        }
+      },
+      "census": {
+        "prims": 12425,
+        "spatial": 46,
+        "elements": 3009,
+        "types": 64,
+        "systems": 9,
+        "ports": 6244,
+        "meshes": 3050,
+        "gprims": 3050
+      },
+      "crossPackagePortTargets": 1008,
+      "worldTransformsCompared": 12350,
+      "meshesCompared": 3048,
+      "meshExclusions": [
+        {
+          "delivery": "cooling",
+          "path": "/demo_datacentre_01/demo_datacentre_01_Site/demo_datacentre_01/L01_Office/Office_Corridor_L01/Corridor_ceiling_void/pipe_clash_near/Geom",
+          "reason": "IFC retains the swept solid; the twin uses controlled facets. Independent IFC readers may produce different tessellation.",
+          "twinPointCount": 10,
+          "readerPointCount": 52
+        },
+        {
+          "delivery": "cooling",
+          "path": "/demo_datacentre_01/demo_datacentre_01_Site/demo_datacentre_01/L01_Office/Office_Corridor_L01/Corridor_ceiling_void/pipe_clash_tangent/Geom",
+          "reason": "IFC retains the swept solid; the twin uses controlled facets. Independent IFC readers may produce different tessellation.",
+          "twinPointCount": 24,
+          "readerPointCount": 52
+        }
+      ],
+      "relationshipCounts": {
+        "aeco:connectedPorts": 6052,
+        "aeco:serves": 9
+      }
+    }
   },
   "roundtrip": {
     "elements": 2,
@@ -88,9 +359,23 @@
     "attempts": 1,
     "exitCode": 1,
     "status": "not-proven",
-    "cause": "The toolchain Python environment omits IfcOpenShell; package preConfigure import failed.",
-    "networkDeviation": "Default Nix binary caches were contacted beyond the requested host restriction."
+    "cause": "Published CCTV v0.5.6 input lookup returned HTTP 404 despite offline resolution and an external registry override.",
+    "substitutes": false,
+    "remoteBuilders": false
   },
-  "fullFacility": "not proven: released data-centre checkout has no connected full fixture",
-  "acceptanceRetry": "One retry with released source resources after prebuilt core and axis descriptors reported older versions; generated schemas were byte-identical."
+  "fullFacility": "proven: all nine deliveries and the connected root",
+  "acceptanceRetry": "One full-gate retry after the original 480-second pytest limit expired. The native regression budget is now 600 seconds for private cold caches; the converter-only budget remains 240 seconds.",
+  "fullFacilityTest": {
+    "passed": 1,
+    "skipped": 0,
+    "seconds": 53.77
+  },
+  "verifiedTestCases": {
+    "passed": 176,
+    "configuration": "175 passing cases from the pinned gate plus its previously skipped full-fixture case, now passed with the full source."
+  },
+  "postMeshProbeSmoke": {
+    "passed": 28,
+    "seconds": 3.97
+  }
 }

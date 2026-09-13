@@ -12,6 +12,7 @@ Layer layout: <out>.usda roots the stage and sublayers
 groups, ports — small, diffable) and <out>.geometry.usdc (meshes —
 binary).
 """
+import logging
 import os
 import uuid as _uuid
 
@@ -532,6 +533,40 @@ def author(ifc, geo, out_path, overlay_spine=False):
         stage.GetPrimAtPath(b).GetRelationship(
             "aeco:connectedPorts").AddTarget(a)
         stats["portLinks"] += 1
+
+    # Federated deliveries carry the other package's target path as data.
+    # Only the local endpoint owns an opinion; never define the foreign prim
+    # or infer its reciprocal link from a basename or GlobalId.
+    relationship_types = {"aeco:connectedPorts": "AecoPort",
+                          "aeco:serves": "AecoSystem"}
+    for association in ifc.by_type("IfcRelAssociatesDocument"):
+        document = association.RelatingDocument
+        if not document.is_a("IfcDocumentReference"):
+            continue
+        name = document.Name
+        if name not in relationship_types:
+            continue
+        owners = []
+        for entity in association.RelatedObjects:
+            path = port_path_by_id.get(entity.id()) or path_by_entity.get(entity.id())
+            prim = stage.GetPrimAtPath(path) if path is not None else None
+            if prim and prim.GetTypeName() == relationship_types[name]:
+                owners.append(prim)
+        if not owners:
+            continue
+        description = document.Description or ""
+        target = (Sdf.Path(description) if description and
+                  Sdf.Path.IsValidPathString(description) else Sdf.Path.emptyPath)
+        if (not target.IsAbsolutePath() or not target.IsPrimPath()
+                or target.ContainsPrimVariantSelection()):
+            logging.getLogger(__name__).warning(
+                "IfcDocumentReference #%s (%s): Description must be an absolute "
+                "USD prim path; ignored %r", document.id(), name, description)
+            continue
+        for prim in owners:
+            relationship = prim.GetRelationship(name)
+            if target not in relationship.GetTargets():
+                relationship.AddTarget(target)
 
     # ---- geometry ---------------------------------------------------------
     stage.SetEditTarget(Usd.EditTarget(geo_layer))

@@ -87,10 +87,10 @@ export AECO_CCTV_ROOT=../usdaeco-cctv
 export AECO_BUILDUP_ROOT=../usdaeco-buildup
 export AECO_WALL_ROOT=../usdaeco-wall
 export AECO_PIPE_ROOT=../usdaeco-pipe
-env -u PYTHONPATH PYTHONPATH=$AECO_CORE_ROOT:$PWD python check.py
+env -u PYTHONPATH python check.py
 env -u PYTHONPATH python -m pytest -q
 env -u PYTHONPATH python examples/roundtrip/run.py --publish
-nix flake check
+nix flake check --no-write-lock-file
 ```
 
 `check.py` prints `N checks, M failed`. Source tests add explicit paths and
@@ -146,10 +146,21 @@ S01–S05 and S20–S29 apply; S06–S19 are inapplicable because this package h
 
 ## Status
 
-Version 0.3.0: **104 checks, 0 failed, 1 not run; 147 tests passed, 1 skipped**.
-The unexecuted row is connected full-facility parity: the released fixture is
-unavailable. The CMake plugin and its 12 native contract tests pass; Nix
-packaging remains not proven. See the [file-format receipt](docs/file-format-acceptance.json).
+Version 0.3.1: **104 checks, 0 failed** against the pinned source (175 tests
+passed, 1 conditional case skipped). That full-facility case then **passed
+separately** against datacentre v0.5.1: all **176 cases** are verified across
+the two fixture configurations.
+
+All nine federated deliveries and the connected root match their twins' census,
+relationships and transforms: **6,052 port targets**, including **1,008 cross-package
+targets**, **9 serves targets**, and **12,350 world transforms**. Mesh points and
+topology match for 3,048 meshes; exactly two manifest-listed controlled
+meshes are excluded from that comparison. The base still matches 6,048 port
+and 9 serves targets. All 12 published roundtrip result files are unchanged.
+Native tests use private caches; two formerly flaky cases also pass during an
+overlapping pytest run. Nix packaging remains not proven. See the
+[file-format receipt](docs/file-format-acceptance.json) and
+[acceptance deviations](docs/acceptance.md).
 The optional exact command preserves the existing
 converter, native cases and final-reimport publication. The base census is
 2,954 elements, 33 spaces and zero unparented elements. Exact export also
