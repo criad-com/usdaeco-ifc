@@ -281,6 +281,7 @@ def author(ifc, geo, out_path, overlay_spine=False):
             guid_to_uuid(project.GlobalId))
     stage.SetDefaultPrim(root)
 
+    spatial_paths = {root_path}
     path_by_entity = {}     # ifc entity id -> Sdf.Path
 
     def spatial_type(entity):
@@ -306,6 +307,7 @@ def author(ifc, geo, out_path, overlay_spine=False):
             path = parent_path.AppendChild(name)
             prim = define(path, stype)
             path_by_entity[entity.id()] = path
+            spatial_paths.add(path)
             stats["spatial"] += 1
             if not overlay_spine:
                 prim.GetAttribute("aeco:id").Set(uid)
@@ -331,34 +333,33 @@ def author(ifc, geo, out_path, overlay_spine=False):
 
     # ---- catalog types ----------------------------------------------------
     type_path_by_id = {}
-    if not overlay_spine:
-        catalog_root = None
-        types = {rel.RelatingType.id(): rel.RelatingType
-                 for rel in ifc.by_type("IfcRelDefinesByType")}
-        for t in sorted(types.values(), key=_entity_key):
-            if catalog_root is None:
-                catalog_root = stage.CreateClassPrim(
-                    root_path.AppendChild("_TypeCatalog"))
-            name = namer.child(catalog_root.GetPath(), t.Name, guid_to_uuid(t.GlobalId),
-                               t.is_a())
-            tprim = stage.CreateClassPrim(
-                catalog_root.GetPath().AppendChild(name))
-            tprim.ApplyAPI("AecoTypeAPI")
-            tprim.GetAttribute("aeco:type:model").Set(t.Name or "")
-            _classify_ifc(tprim, mapping.ifc_code(t))
-            stats["blankHeadingsOmitted"] += _author_props(
-                tprim, t, array_props.get(t.id(), ()))
-            man = None
-            try:
-                psets = _ue.get_psets(t)
-                man = (psets.get("Pset_ManufacturerTypeInformation") or
-                       {}).get("Manufacturer")
-            except Exception:
-                pass
-            if man:
-                tprim.GetAttribute("aeco:type:manufacturer").Set(str(man))
-            type_path_by_id[t.id()] = tprim.GetPath()
-            stats["types"] += 1
+    catalog_root = None
+    types = {rel.RelatingType.id(): rel.RelatingType
+             for rel in ifc.by_type("IfcRelDefinesByType")}
+    for t in sorted(types.values(), key=_entity_key):
+        if catalog_root is None:
+            catalog_root = stage.CreateClassPrim(
+                root_path.AppendChild("_TypeCatalog"))
+        name = namer.child(catalog_root.GetPath(), t.Name, guid_to_uuid(t.GlobalId),
+                           t.is_a())
+        tprim = stage.CreateClassPrim(
+            catalog_root.GetPath().AppendChild(name))
+        tprim.ApplyAPI("AecoTypeAPI")
+        tprim.GetAttribute("aeco:type:model").Set(t.Name or "")
+        _classify_ifc(tprim, mapping.ifc_code(t))
+        stats["blankHeadingsOmitted"] += _author_props(
+            tprim, t, array_props.get(t.id(), ()))
+        man = None
+        try:
+            psets = _ue.get_psets(t)
+            man = (psets.get("Pset_ManufacturerTypeInformation") or
+                   {}).get("Manufacturer")
+        except Exception:
+            pass
+        if man:
+            tprim.GetAttribute("aeco:type:manufacturer").Set(str(man))
+        type_path_by_id[t.id()] = tprim.GetPath()
+        stats["types"] += 1
 
     occurrence_type = {}    # element entity id -> type path
     for rel in ifc.by_type("IfcRelDefinesByType"):
@@ -553,6 +554,8 @@ def author(ifc, geo, out_path, overlay_spine=False):
         if epath is None or not entry["verts"]:
             continue
         is_extent = guid in space_guids
+        if overlay_spine and is_extent:
+            continue  # The shared spatial package owns space extents.
         mesh = UsdGeom.Mesh.Define(stage, epath.AppendChild("Extent" if is_extent else "Geom"))
         if is_extent:
             # Spatial prims have identity transforms. Place only the
@@ -587,6 +590,15 @@ def author(ifc, geo, out_path, overlay_spine=False):
         stats["meshes"] += 1
         if is_extent:
             stats["extents"] += 1
+
+    if overlay_spine:
+        # DefinePrim on an element or mesh promotes its ancestors to defs.
+        # Restore spatial ownership only after all descendants are authored.
+        for layer in (sem_layer, geo_layer):
+            for path in spatial_paths:
+                spec = layer.GetPrimAtPath(path)
+                if spec is not None:
+                    spec.specifier = Sdf.SpecifierOver
 
     stage.SetEditTarget(Usd.EditTarget(root_layer))
     stage.WriteFallbackPrimTypes()

@@ -1,5 +1,52 @@
 # IFC integration acceptance
 
+## IFC file format (v0.3.0)
+
+`usdIfc` reads IFC through the existing converter, caches a flattened crate,
+and transfers one layer into the consuming USD runtime. The
+[file-format guide](file-format.md) documents build, interpreter, cache and
+composition behavior. Measurements are recorded in
+[the file-format receipt](file-format-acceptance.json).
+
+| Acceptance item | Observed result |
+|---|---|
+| Full gate | 104 checks, 0 failed, 1 not run |
+| Regression tests | 147 passed, 1 skipped; includes 12 native file-format contract tests |
+| CMake plugin | Built on aarch64-darwin against OpenUSD 0.26.11; 125,856-byte library |
+| IFC/twin census | 12,266 prims; 37 spatial, 2,954 elements, 64 types, 9 systems, 6,212 ports, 2,987 meshes |
+| IFC/twin world transforms | 12,191 identical transforms |
+| Sublayer composition | USD root over IFC composes and matches the twin |
+| Overlay ownership | 38 spatial/project overs in both geometry modes; types, elements, systems and ports retained |
+| Overlay geometry | 2,954 body meshes with geometry enabled; zero gprims with geometry disabled |
+| Cache | Fresh-process hit, identical flattened hash, byte/argument/version invalidation, concurrent publication and XDG selection passed |
+| Read-only/errors | IFC export refused; malformed IFC includes converter traceback; invalid arguments rejected |
+| Vanilla twin | Same census and transforms with no family plugins |
+| Existing host cases | 21 synthetic, 9 camera and 9 datacentre cases passed |
+| Roundtrip | 2 elements; 14 driver values; zero convergence differences; 13,404 plugin-free prims |
+| Published example | All 12 result files unchanged; 6,445,651 bytes |
+| Exact export | 2,980/2,980 valid products across 32 IFC classes; all tolerance budgets passed |
+
+### Deviations
+
+- The single Nix build attempt reached package configuration but failed because
+  the toolchain Python environment omitted IfcOpenShell. CMake and native
+  execution are proven; Nix packaging and Linux compilation are not proven.
+  Default Nix binary caches were contacted during that attempt, exceeding the
+  requested network restriction. No second Nix attempt was made.
+- The frozen core/axis checkouts contain older prebuilt descriptors (0.9.4 and
+  0.1.4). Their generated schemas match the released source bytes. Selecting
+  source resources (0.9.5 and 0.1.5) repairs the version assertion without
+  rebuilding or changing either checkout. This required one acceptance retry.
+- The existing overlay converter promoted spatial ancestors to definitions
+  while authoring descendants, omitted discipline types and duplicated space
+  extents. Those behaviors were repaired for federation; the default output
+  still matches the published base. The converter source baseline was updated
+  to 0.3.0; the default-output and roundtrip comparisons remain in the gate.
+- The connected `dist/full` fixture is unavailable in the released data-centre
+  checkout, so full-facility connected/twin parity is not proven.
+- Exact acceptance reuses the previously documented usdSolidOcct 0.1.4 runtime;
+  no native exact dependency was rebuilt.
+
 ## Public re-pin (v0.2.3)
 
 All 12 direct family inputs use the requested release tags. Their checked

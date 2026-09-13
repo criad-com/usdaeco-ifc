@@ -8,7 +8,7 @@ from usdaeco_ifc.exact_runtime import RuntimeUnavailable, run_native, runtime_pa
 HERE = Path(__file__).resolve().parent
 
 
-def test_default_converter_byte_identical_to_previous_release():
+def test_converter_sources_match_recorded_release():
     import hashlib
     wanted=json.loads((HERE/'fixtures/exact/default-converter.json').read_text())
     root=HERE.parent

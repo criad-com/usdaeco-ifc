@@ -11,6 +11,7 @@ let the IFC host solve them, then export and reimport for convergence. See the
 | Component | Contract |
 |---|---|
 | Converter | spatial structure, identity, classification, types, groups, ports and tessellated geometry |
+| Optional `usdIfc` format | read-only IFC layers, cached conversion and flattened materialization |
 | IFC host | native transactions, closure readback, validation and export |
 | Optional exact export | evaluated OCCT BReps, material subsets, mapped prototypes and Mesh twins in separate layers |
 | Integration | no new schema; core and sync retain ownership of their namespaces |
@@ -37,6 +38,32 @@ fresh-result equality through S27/S28. See [acceptance](docs/acceptance.md).
 ![Final reimport rendered with stock USD](examples/roundtrip/result/vanilla.png)
 
 ## Build and check
+
+### Optional IFC file format
+
+`usdIfc` opens `.ifc` directly through `Usd.Stage.Open` or a USD sublayer.
+It is a read-only native plugin; build it against the OpenUSD used by the
+consumer. The converter, host and roundtrip example need no file-format plugin.
+See [file-format setup, cache and arguments](docs/file-format.md).
+
+```sh
+export USD_DEV="$USD_DEV_OUTPUT"
+./build.sh
+export USDAECO_IFC_SOURCE_PYTHON="$PYTHON"
+export USDAECO_IFC_PYTHON="$PWD/tools/ifc-python"
+export CORE_PLUGIN_DIR="$AECO_CORE_ROOT/usdAeco"
+export AXIS_PLUGIN_DIR="$AECO_AXIS_ROOT/usdAecoAxis"
+export PXR_PLUGINPATH_NAME="$CORE_PLUGIN_DIR:$PWD/out/plugins/usdIfc/resources"
+env -u PYTHONPATH "$PYTHON" -m pytest -q tests/test_file_format.py
+```
+
+`USD_DEV_OUTPUT` is an existing toolchain `usd-dev` output and `PYTHON` is
+the converter environment described below. The source launcher adds explicit
+paths without installing packages. Tests launch the matching native USD Python
+for plugin reads. `nix build .#usdIfc --no-write-lock-file` is the packaged route;
+its converter dependency availability is platform-dependent.
+
+### Converter and host
 
 Use a Python environment with usd-core 26.8, IfcOpenShell 0.8.5, numpy, pytest,
 pydantic 2, pyyaml and Pillow, plus the toolchain's usdrecord/Embree renderer. Put the
@@ -114,11 +141,15 @@ reads these pins and the example manifest.
 `tools/usdaeco_ifc/host.py` implements the host interface. `scenarios/` and
 `tests/` preserve IFC-specific regression cases. `docs/` explains the mapping
 and limits. `examples/roundtrip/` carries inputs, findings, render and provenance.
+`usdIfc/` contains the native file-format plugin; `build.sh` installs it under `out/`.
 S01–S05 and S20–S29 apply; S06–S19 are inapplicable because this package has no schema.
 
 ## Status
 
-Version 0.2.3: **101 checks, 0 failed, 0 not run; 134 tests passed**.
+Version 0.3.0: **104 checks, 0 failed, 1 not run; 147 tests passed, 1 skipped**.
+The unexecuted row is connected full-facility parity: the released fixture is
+unavailable. The CMake plugin and its 12 native contract tests pass; Nix
+packaging remains not proven. See the [file-format receipt](docs/file-format-acceptance.json).
 The optional exact command preserves the existing
 converter, native cases and final-reimport publication. The base census is
 2,954 elements, 33 spaces and zero unparented elements. Exact export also
@@ -141,3 +172,4 @@ Runtime dependencies keep their own licences; third-party code is not vendored.
 | Pillow | HPND; image validation |
 | IfcOpenShell | LGPL-3.0; imported only |
 | OCCT | LGPL-2.1; dynamically linked through IfcOpenShell and the optional bridge |
+| OpenSSL | Apache-2.0; optional Linux plugin SHA-256 implementation |

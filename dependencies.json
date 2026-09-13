@@ -164,7 +164,8 @@
       "attempts": 1,
       "exitCode": 1,
       "status": "not-proven",
-      "cause": "The local recursive aeco-toolchain override was unavailable after its archive request returned HTTP 404. The command was issued before the failed preparation was handled and stopped at the missing path; evaluation and build were not reached. No retry."
+      "cause": "The toolchain Python environment omits IfcOpenShell; package preConfigure import failed.",
+      "networkDeviation": "Default Nix binary caches were contacted beyond the requested host restriction."
     },
     "publicRepin": {
       "directPins": 12,
@@ -182,12 +183,12 @@
       "evidence": "docs/public-repin.json"
     },
     "gate": {
-      "checks": 101,
+      "checks": 104,
       "failed": 0,
-      "notRun": 0,
+      "notRun": 1,
       "pytest": {
-        "passed": 134,
-        "skipped": 0
+        "passed": 147,
+        "skipped": 1
       },
       "structure": {
         "toolchain": "v0.3.10",
@@ -195,6 +196,13 @@
         "failed": 0,
         "unmodified": true
       }
+    },
+    "fileFormat": {
+      "version": "0.3.0",
+      "usd": "0.26.11-dev-g47154dc",
+      "converterUsd": "26.8",
+      "nativeTests": 12,
+      "receipt": "docs/file-format-acceptance.json"
     }
   },
   "fixtures": {
@@ -208,11 +216,11 @@
     },
     "defaultConverter": {
       "repo": "usdaeco-ifc",
-      "ref": "v0.1.2",
+      "ref": "v0.3.0",
       "paths": [
         "tests/fixtures/exact/default-converter.json"
       ],
-      "reason": "Historical converter byte-hash baseline; unchanged by the optional exact exporter."
+      "reason": "Converter source baseline after overlay ownership repair; default output remains covered by published parity."
     },
     "kindPrototype": {
       "library": "usdAecoKindProto",
@@ -224,6 +232,13 @@
         "usdAeco": ">=0.7"
       },
       "reason": "Filtered historical protocol fixture with seven APIs; the published roundtrip loads the released libraries."
+    },
+    "aeco-toolchain": {
+      "repo": "aeco-toolchain",
+      "library": "aeco-toolchain",
+      "ref": "v0.4.0",
+      "flakeInput": true,
+      "reason": "Optional usdIfc native build against the released usd-dev ABI"
     }
   }
 }

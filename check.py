@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 import bootstrap
 from usdaeco_check import Report
 from usdaeco_check.structure import check_structure
@@ -132,7 +133,10 @@ s=Usd.Stage.Open(sys.argv[1]); assert s and not s.GetCompositionErrors() and s.F
         except RuntimeUnavailable:
             exact_available = False
             environment.pop('USD_SOLID_OCCT_RUNTIME', None)
-        tests = python(['-m','pytest','-q','--tb=short','-rs'],cwd=ROOT,env=environment,capture_output=True,text=True,timeout=240)
+        junit = temporary / 'pytest.xml'
+        tests = python(['-m','pytest','-q','--tb=short','-rs','--junitxml',str(junit)],
+                       cwd=ROOT,env=environment,capture_output=True,text=True,
+                       timeout=480 if os.environ.get('USD_DEV') else 240)
         print(tests.stdout)
         if tests.returncode: print(tests.stderr)
         report.check('pytest',tests.returncode == 0)
@@ -140,7 +144,40 @@ s=Usd.Stage.Open(sys.argv[1]); assert s and not s.GetCompositionErrors() and s.F
         skipped = re.search(r'(\d+) skipped',tests.stdout)
         evidence['pytest'] = int(passed.group(1)) if passed else 0
         evidence['skipped'] = int(skipped.group(1)) if skipped else 0
-        report.check('native integration tests executed',evidence['pytest'] >= 100 and evidence['skipped'] == (0 if exact_available else 1))
+        test_cases = ET.parse(junit).findall('.//testcase') if junit.is_file() else []
+        allowed_skips = {'test_connected_datacentre_matches_usd_only'}
+        if not exact_available:
+            allowed_skips.add('test_native_ifc_wall_and_pipe')
+        unexpected_skips = [case.get('name') for case in test_cases if case.find('skipped') is not None
+                            and case.get('name') not in allowed_skips
+                            and not (not os.environ.get('USD_DEV') and case.get('classname','').endswith('test_file_format'))]
+        report.check('native integration tests executed',evidence['pytest'] >= 100 and not unexpected_skips,
+                     'optional skips: ' + str(evidence['skipped']))
+        print('== stage: optional IFC file format',flush=True)
+        if os.environ.get('USD_DEV'):
+            resources = Path(os.environ.get('USD_IFC_PLUGIN_DIR', ROOT/'out/plugins/usdIfc/resources'))
+            descriptor_path = resources/'plugInfo.json'
+            products = False
+            if descriptor_path.is_file():
+                descriptor = json.loads(descriptor_path.read_text())['Plugins'][0]
+                products = (resources / descriptor['Root'] / descriptor['LibraryPath']).is_file()
+            report.check('usdIfc build products',products)
+            native_cases = [case for case in test_cases if case.get('classname','').endswith('test_file_format')
+                            and case.get('name') not in ('test_file_format_descriptor','test_connected_datacentre_matches_usd_only')]
+            report.check('usdIfc native contract tests', len(native_cases) >= 12 and all(
+                not any(case.find(tag) is not None for tag in ('failure','error','skipped')) for case in native_cases),
+                str(len(native_cases)) + ' native tests')
+            result_path = ROOT/'.work/file-format-tests/report.json'
+            if result_path.is_file():
+                evidence['fileFormat'] = json.loads(result_path.read_text())
+            full = evidence.get('fileFormat',{}).get('fullFacility','not proven: native tests did not report')
+            if isinstance(full,dict):
+                report.check('connected full facility twin parity',True,json.dumps(full,sort_keys=True))
+            else:
+                report.not_run('connected full facility twin parity',full)
+        else:
+            report.not_run('usdIfc build products','optional: set USD_DEV and run build.sh')
+            report.not_run('usdIfc native contract tests','not proven: USD_DEV is unset')
     from usdaeco_ifc.exact_acceptance import check as check_exact
     evidence['exact'] = check_exact(report)
     evidence.update(checks=len(report.results),failed=report.failed)

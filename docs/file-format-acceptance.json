@@ -1,0 +1,96 @@
+{
+  "version": "0.3.0",
+  "gate": {
+    "checks": 104,
+    "failed": 0,
+    "notRun": 1,
+    "pytest": {
+      "passed": 147,
+      "skipped": 1
+    }
+  },
+  "build": {
+    "method": "CMake",
+    "platform": "aarch64-darwin",
+    "usd": "0.26.11-dev-g47154dc",
+    "bytes": 125856,
+    "sha256": "62a68c0ac1142ccb80bb0df981f1b688f37a29eed0b104b626191d08f3b05674"
+  },
+  "converterRuntime": {
+    "usd-core": "26.8",
+    "ifcopenshell": "0.8.5",
+    "sourcePackage": true
+  },
+  "resources": {
+    "core": "0.9.5 source",
+    "axis": "0.1.5 source"
+  },
+  "nativeContractTests": 12,
+  "fileFormat": {
+    "census": {
+      "prims": 12266,
+      "spatial": 37,
+      "elements": 2954,
+      "types": 64,
+      "systems": 9,
+      "ports": 6212,
+      "meshes": 2987,
+      "gprims": 2987
+    },
+    "flattenedHash": "463acc90f5b9016d0eaf39f45d47d9667b8062181113d9b57fe7efe9dd48dfaf",
+    "worldTransformsCompared": 12191,
+    "overlay0": {
+      "spatialOvers": 38,
+      "geometry": "0",
+      "census": {
+        "prims": 9279,
+        "spatial": 0,
+        "elements": 2954,
+        "types": 64,
+        "systems": 9,
+        "ports": 6212,
+        "meshes": 0,
+        "gprims": 0
+      }
+    },
+    "overlay1": {
+      "spatialOvers": 38,
+      "geometry": "1",
+      "census": {
+        "prims": 12233,
+        "spatial": 0,
+        "elements": 2954,
+        "types": 64,
+        "systems": 9,
+        "ports": 6212,
+        "meshes": 2954,
+        "gprims": 2954
+      }
+    },
+    "cacheHit": true,
+    "fullFacility": "not proven: dist/full/dc.connected.usda unavailable"
+  },
+  "roundtrip": {
+    "elements": 2,
+    "driversCompared": 14,
+    "differences": 0,
+    "prims": 13404,
+    "unchangedResultFiles": 12,
+    "resultBytes": 6445651
+  },
+  "exact": {
+    "selected": 2980,
+    "exact": 2980,
+    "failed": 0,
+    "classes": 32
+  },
+  "nix": {
+    "attempts": 1,
+    "exitCode": 1,
+    "status": "not-proven",
+    "cause": "The toolchain Python environment omits IfcOpenShell; package preConfigure import failed.",
+    "networkDeviation": "Default Nix binary caches were contacted beyond the requested host restriction."
+  },
+  "fullFacility": "not proven: released data-centre checkout has no connected full fixture",
+  "acceptanceRetry": "One retry with released source resources after prebuilt core and axis descriptors reported older versions; generated schemas were byte-identical."
+}

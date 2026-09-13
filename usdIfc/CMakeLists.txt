@@ -1,0 +1,17 @@
+add_library(usdIfc SHARED fileFormat.cpp)
+target_link_libraries(usdIfc PRIVATE usd sdf tf)
+if(TARGET python)
+  target_link_libraries(usdIfc PRIVATE python)
+endif()
+if(NOT APPLE)
+  find_package(OpenSSL REQUIRED COMPONENTS Crypto)
+  target_link_libraries(usdIfc PRIVATE OpenSSL::Crypto)
+endif()
+target_compile_definitions(usdIfc PRIVATE
+  USDAECO_IFC_DEFAULT_PYTHON="${USDAECO_IFC_DEFAULT_PYTHON}")
+set_target_properties(usdIfc PROPERTIES PREFIX "")
+set(PLUGIN_LIBRARY "usdIfc${CMAKE_SHARED_LIBRARY_SUFFIX}")
+configure_file(plugInfo.json plugInfo.json @ONLY)
+install(TARGETS usdIfc LIBRARY DESTINATION plugins/usdIfc)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/plugInfo.json"
+  DESTINATION plugins/usdIfc/resources)

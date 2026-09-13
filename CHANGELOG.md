@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0
+
+- Add the read-only `usdIfc` Sdf file-format plugin, content-addressed cache,
+  `spine` and `geometry` arguments, CMake build and optional Nix package.
+- Keep conversion in a separate interpreter and transfer one flattened layer
+  into USD; retain the IFC delivery and its USD twin as separate entry points.
+- Repair overlay spatial ownership after descendant authoring and retain
+  discipline types; shared packages own space extents.
+
+- Verify 104 checks, 0 failed, 1 not run; 147 tests passed, 1 skipped.
+  Preserve all 12 published result files. Record Nix dependency/network limits,
+  the resource-metadata correction and unavailable connected full fixture.
+
 ## 0.2.3
 
 - public re-pin: toolchain v0.3.10, core v0.9.5, axis v0.1.5, sync v0.5.5,

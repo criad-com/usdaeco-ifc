@@ -32,7 +32,7 @@ def check(report):
         report.check('kernel tolerances recorded',all(r['tolerance']>0 for r in result['bodies']))
         report.check('mapped items use shared prototypes',0<result['prototypes']<result['mappedProducts'],f"{result['mappedProducts']} products / {result['prototypes']} prototypes")
         report.check('IFC material subsets authored',result['materialSubsets']>result['exact'],f"{result['materialSubsets']} exact subsets plus their twin subsets")
-        # Byte parity is about the default converter's source as well as its
-        # existing published-output comparisons; the optional pass never calls it.
+        # The separate converter parity gate compares published output; the
+        # optional exact pass never calls or rewrites the converter.
         result={k:v for k,v in result.items() if k!='bodies'}
         return result

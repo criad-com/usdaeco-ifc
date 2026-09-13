@@ -123,6 +123,11 @@ structure** rather than a stand-alone stage, which is how several
 per-discipline IFC exports compose into one twin (D9). Because naming is
 deterministic, the same spatial prim from two exports lands on the same
 path; because ids are lossless, `repath` repairs anything that does not.
+Spatial specs are restored to `over` after all descendants are authored,
+because USD's `DefinePrim` otherwise promotes their ancestors to `def`.
+Each discipline retains its type catalog and occurrence inheritance; space
+extents belong to the shared package. The [IFC file format](file-format.md)
+passes this flag through as `spine=over` and preserves the resulting specs.
 
 **Kind health.** The converter never invents or translates a kind: the
 IFC class is the classification code. What it reports is the number of

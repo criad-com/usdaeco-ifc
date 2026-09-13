@@ -1,0 +1,22 @@
+{
+  "Plugins": [{
+    "Type": "library",
+    "Name": "usdIfc",
+    "Root": "..",
+    "LibraryPath": "@PLUGIN_LIBRARY@",
+    "ResourcePath": "resources",
+    "Info": {
+      "Types": {
+        "UsdIfcFileFormat": {
+          "bases": ["SdfFileFormat"],
+          "formatId": "ifc",
+          "extensions": ["ifc"],
+          "primary": true,
+          "target": "usd",
+          "supportsWriting": false,
+          "supportsEditing": false
+        }
+      }
+    }
+  }]
+}

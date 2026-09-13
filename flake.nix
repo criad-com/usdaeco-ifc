@@ -1,7 +1,9 @@
 {
   description = "IFC converter and sync host integration";
   inputs = {
+    aeco-toolchain.url = "github:criad-com/aeco-toolchain?ref=v0.4.0";
     toolchain.url = "github:criad-com/usdaeco-toolchain?ref=v0.3.10";
+    toolchain.inputs.aeco-toolchain.follows = "aeco-toolchain";
     core.url = "github:criad-com/usdaeco-core?ref=v0.9.5";
     core.flake = false;
     axis.url = "github:criad-com/usdaeco-axis?ref=v0.1.5";
@@ -26,7 +28,7 @@
     usdSolidOcct.flake = false;
     nixpkgs.follows = "toolchain/nixpkgs";
   };
-  outputs = { self, nixpkgs, toolchain, core, axis, sync, datacentre, scenarios, cctv, buildup, wall, pipe, usdSolid, usdSolidOcct }:
+  outputs = { self, nixpkgs, aeco-toolchain, toolchain, core, axis, sync, datacentre, scenarios, cctv, buildup, wall, pipe, usdSolid, usdSolidOcct }:
     let
       each = nixpkgs.lib.genAttrs [ "aarch64-darwin" "x86_64-linux" ];
       make = system:
@@ -35,6 +37,44 @@
           kit = toolchain.lib.forSystem system;
           corePlugin = kit.buildCodelessSchema { name = "usdAeco"; src = core; };
           axisPlugin = kit.buildCodelessSchema { name = "usdAecoAxis"; src = axis; deps = [ corePlugin ]; };
+          converterPython = pkgs.writeShellScript "usdIfc-python" ''
+            export AECO_CORE_ROOT=${core}
+            export AECO_AXIS_ROOT=${axis}
+            export CORE_PLUGIN_DIR=${corePlugin}/plugins/usdAeco/resources
+            export AXIS_PLUGIN_DIR=${axisPlugin}/plugins/usdAecoAxis/resources
+            export PXR_PLUGINPATH_NAME=$CORE_PLUGIN_DIR:$AXIS_PLUGIN_DIR
+            exec env -u PYTHONPATH ${kit.pythonEnv}/bin/python -c '
+            import runpy, sys
+            sys.dont_write_bytecode = True
+            sys.path[:0] = ["${self}/tools", "${core}/tools", "${core}"]
+            mode, target = sys.argv[1:3]
+            sys.argv = [target, *sys.argv[3:]]
+            if mode == "-m":
+                runpy.run_module(target, run_name="__main__")
+            elif mode == "-c":
+                exec(target)
+            else:
+                raise SystemExit("expected -m or -c")
+            ' "$@"
+          '';
+          usdIfc = pkgs.stdenv.mkDerivation {
+            pname = "usdIfc";
+            version = (builtins.fromJSON (builtins.readFile ./library.json)).version;
+            src = self;
+            nativeBuildInputs = [ pkgs.cmake pkgs.ninja ];
+            buildInputs = [ aeco-toolchain.packages.${system}.usd-dev pkgs.python3 ]
+              ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [ pkgs.apple-sdk_15 ]
+              ++ pkgs.lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [ pkgs.openssl ];
+            cmakeFlags = [
+              "-Dpxr_DIR=${aeco-toolchain.packages.${system}.usd-dev}"
+              "-DPython3_ROOT_DIR=${pkgs.python3}"
+              "-DPython3_FIND_STRATEGY=LOCATION"
+              "-DUSDAECO_IFC_DEFAULT_PYTHON=${converterPython}"
+            ];
+            preConfigure = ''
+              ${converterPython} -c 'import ifcopenshell; from usdaeco_ifc.convert import convert'
+            '';
+          };
           setup = ''
             export TOOLCHAIN_DIR=${toolchain}
             export AECO_CORE_ROOT=${core}
@@ -68,9 +108,12 @@
               env -u PYTHONPATH python example-work/examples/roundtrip/run.py "$@"
             '';
           };
-        in { inherit pkgs kit setup check example; };
+        in { inherit pkgs kit setup check example usdIfc; };
     in {
-      packages = each (system: let p = make system; in { default = p.pkgs.runCommand "usdaeco-ifc-source" {} ''mkdir -p "$out"; cp -R ${self}/. "$out/"''; });
+      packages = each (system: let p = make system; in {
+        inherit (p) usdIfc;
+        default = p.pkgs.runCommand "usdaeco-ifc-source" {} ''mkdir -p "$out"; cp -R ${self}/. "$out/"'';
+      });
       checks = each (system: let p = make system; in { integration = p.check; });
       devShells = each (system: let p = make system; in { default = p.pkgs.mkShell { packages = [ p.kit.pythonEnv p.kit.usd-dev ]; shellHook = p.setup + "unset PYTHONPATH"; }; });
       apps = each (system: let p = make system; in { example = { type = "app"; program = "${p.example}/bin/example"; }; });

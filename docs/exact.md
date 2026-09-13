@@ -14,8 +14,9 @@ Every body must be a valid solid and preserve source volume within 1e-9
 relative error. Unsupported representations and material correspondence
 fail explicitly; `exact-report.json` includes counts and failures by class.
 
-The ordinary converter modules are byte-identical to v0.1.2. The exact
-command neither calls that converter nor changes its output files. It writes:
+The default converter output is checked against the published base variant.
+Version 0.3.0 repairs only its federated overlay authoring; the exact command
+neither calls that converter nor changes its output files. It writes:
 
 | File | Content |
 |---|---|
